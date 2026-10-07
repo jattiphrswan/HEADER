@@ -16,8 +16,7 @@ import {
   Smartphone, 
   Tablet, 
   Monitor, 
-  Code2,
-  ExternalLink
+  Code2
 } from 'lucide-react';
 
 const headersList = [
@@ -104,6 +103,8 @@ export function App() {
   const activeHeader = headersList.find((h) => h.id === selectedHeaderId) || headersList[0];
   const ActiveComponent = activeHeader.component;
 
+  const isForcedMobile = deviceSize === 'mobile';
+
   const handleCopyCode = () => {
     const importCode = `import { ${activeHeader.component.name} } from './components/headers';\n\n<${activeHeader.component.name} />`;
     navigator.clipboard?.writeText(importCode);
@@ -134,7 +135,7 @@ export function App() {
                 </span>
               </h1>
               <p className="text-xs text-slate-500 font-medium">
-                Centralized Data: <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-[11px]">src/data/headerData.js</code>
+                Side Slider Menu Enabled • Data: <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-[11px]">src/data/headerData.js</code>
               </p>
             </div>
           </div>
@@ -177,7 +178,7 @@ export function App() {
                 }`}
               >
                 <Smartphone className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Mobile</span>
+                <span className="hidden sm:inline">Mobile (Side Slider)</span>
               </button>
             </div>
 
@@ -247,20 +248,17 @@ export function App() {
         )}
       </header>
 
-      {/* Main Content Area - Just the Responsive Headers, No Hero Section */}
+      {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 flex flex-col gap-8">
         {viewMode === 'single' ? (
           <div className="flex flex-col gap-6">
-            {/* Header Stage Canvas with simulated device viewport */}
             <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden transition-all">
-              {/* Header Canvas */}
               <div className={`p-4 sm:p-12 transition-colors duration-300 min-h-[160px] flex items-center justify-center ${activeHeader.bg}`}>
                 <div className={`transition-all duration-300 mx-auto ${getContainerWidth()}`}>
-                  <ActiveComponent />
+                  <ActiveComponent forcedMobile={isForcedMobile} />
                 </div>
               </div>
 
-              {/* Information Bar */}
               <div className="p-6 bg-white border-t border-slate-100 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
@@ -322,7 +320,7 @@ export function App() {
 
                     <div className={`p-4 sm:p-10 ${header.bg}`}>
                       <div className={`transition-all duration-300 mx-auto ${getContainerWidth()}`}>
-                        <Component />
+                        <Component forcedMobile={isForcedMobile} />
                       </div>
                     </div>
 
