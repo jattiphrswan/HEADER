@@ -1,6 +1,6 @@
 # Modern React & Tailwind CSS Responsive Header Suite
 
-A complete collection of **14 pixel-perfect, responsive headers** built in **React** and **Tailwind CSS**. All headers share centralized data from `src/data/headerData.js` and feature off-canvas **Side Slider drawers** on mobile devices.
+A complete collection of **19 pixel-perfect, responsive headers** built in **React** and **Tailwind CSS**. All headers share centralized data from `src/data/headerData.js` and feature off-canvas **Side Slider drawers** on mobile devices.
 
 ---
 
@@ -16,6 +16,11 @@ header/
 │   │   │   ├── MobileSideDrawer.jsx  # Reusable smooth slide-in mobile drawer
 │   │   │   └── SoRunLogo.jsx         # Custom SVG coiled logo
 │   │   └── headers/
+│   │       ├── Header_EstateLand.jsx     # 🏡 Estate Land sky blue real estate header
+│   │       ├── Header_FundBux.jsx        # 🤝 FundBux dual-tier charity foundation header
+│   │       ├── Header_FinanDox.jsx       # 💼 FinanDox corporate navy & orange ribbon
+│   │       ├── Header_Auralytica.jsx     # 🤖 Auralytica enterprise AI symmetrical header
+│   │       ├── Header_DataPress.jsx      # 📊 DataPress blue angled ribbon & boxed quote
 │   │       ├── Header_Shoes.jsx          # 👟 SHOES sneaker brand with pill active tab
 │   │       ├── Header_Nexum.jsx          # ⚡ NEXUM™ dark slate agency with arrow pill
 │   │       ├── Header_Healance.jsx       # 🌿 Healance frosted wellness cross emblem
@@ -41,7 +46,7 @@ header/
 
 ## 📱 Mobile Responsiveness & Side Slider
 
-Every header is equipped with an off-canvas **Side Slider drawer** (`MobileSideDrawer.jsx`):
+Every single header is equipped with an off-canvas **Side Slider drawer** (`MobileSideDrawer.jsx`):
 - **Smooth Animation**: Glides in from the right edge with a backdrop blur overlay.
 - **No Mobile Squishing**: All desktop menus collapse gracefully into a compact header bar with an easy-to-tap hamburger trigger.
 - **Full Touch Navigation**: Accessible tap targets with full navigation links, badges, and action buttons.
@@ -52,28 +57,6 @@ Every header is equipped with an off-canvas **Side Slider drawer** (`MobileSideD
 ## 📂 Shared Data in One Folder (`src/data/headerData.js`)
 
 All brand names, logos, menu links, and action buttons are maintained in `src/data/headerData.js`. Updating any item in this file updates the corresponding header instantly.
-
----
-
-## 🚀 How to Use in Your Project
-
-```jsx
-import { 
-  Header_Shoes, 
-  Header_Nexum, 
-  Header_Healance, 
-  Header_Mathim, 
-  Header_EasyWeek 
-} from './components/headers';
-
-export default function MyPage() {
-  return (
-    <div className="min-h-screen bg-slate-50">
-      <Header_Shoes />
-    </div>
-  );
-}
-```
 
 ---
 
