@@ -1,5 +1,94 @@
 // Centralized Header Data used across all header variations in src/data/
 
+export const shoesHeaderData = {
+  brand: {
+    name: "SHOES",
+    href: "#",
+  },
+  navigation: [
+    { id: "home", label: "Home", href: "#home" },
+    { id: "men", label: "Men", href: "#men" },
+    { id: "woman", label: "Woman", href: "#woman" },
+    { id: "about", label: "About", href: "#about" },
+    { id: "contact", label: "Contact", href: "#contact" },
+  ],
+  actions: {
+    cart: { count: 3, href: "#cart" },
+    search: { href: "#search" },
+  },
+};
+
+export const nexumHeaderData = {
+  brand: {
+    name: "NEXUM",
+    tag: "™",
+    href: "#",
+  },
+  navigation: [
+    { id: "about", label: "ABOUT", href: "#about" },
+    { id: "work", label: "WORK", href: "#work" },
+    { id: "services", label: "SERVICES", href: "#services" },
+    { id: "insights", label: "INSIGHTS", href: "#insights" },
+    { id: "pricing", label: "PRICING", href: "#pricing" },
+  ],
+  action: {
+    label: "Get in touch",
+    href: "#contact",
+  },
+};
+
+export const healanceHeaderData = {
+  brand: {
+    name: "Healance",
+    href: "#",
+  },
+  navigation: [
+    { id: "services", label: "Services", href: "#services" },
+    { id: "how-it-works", label: "How it Works", href: "#how-it-works" },
+    { id: "our-team", label: "Our Team", href: "#our-team" },
+    { id: "contact", label: "Contact", href: "#contact" },
+  ],
+  actions: {
+    book: { label: "Book Session", href: "#book" },
+    support: { label: "Get Support", href: "#support" },
+  },
+};
+
+export const mathimHeaderData = {
+  brand: {
+    name: "MATHIM",
+    href: "#",
+  },
+  navigation: [
+    { id: "online-classes", label: "Online Classes", href: "#classes" },
+    { id: "our-teachers", label: "Our Teachers", href: "#teachers" },
+    { id: "demo-class", label: "Demo Class", href: "#demo" },
+    { id: "about-us", label: "About Us", href: "#about" },
+    { id: "our-blog", label: "Our Blog", href: "#blog" },
+  ],
+  action: {
+    label: "Join Today!",
+    href: "#join",
+  },
+};
+
+export const easyWeekHeaderData = {
+  brand: {
+    name: "EasyWeek",
+    href: "#",
+  },
+  navigation: [
+    { id: "why-easyweek", label: "Why EasyWeek", href: "#why", isHighlight: true },
+    { id: "solutions", label: "Solutions", href: "#solutions" },
+    { id: "resources", label: "Resources", href: "#resources" },
+    { id: "pricing", label: "Pricing", href: "#pricing" },
+  ],
+  actions: {
+    login: { label: "Log in", href: "#login" },
+    signup: { label: "Sign up", href: "#signup" },
+  },
+};
+
 export const teamSyncHeaderData = {
   brand: {
     name: "TeamSync",

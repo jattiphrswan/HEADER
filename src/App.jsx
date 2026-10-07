@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { 
+  Header_Shoes,
+  Header_Nexum,
+  Header_Healance,
+  Header_Mathim,
+  Header_EasyWeek,
   Header_TeamSync,
   Header_Nurap,
   Header_UntitledUI,
@@ -21,17 +26,57 @@ import {
 
 const headersList = [
   {
+    id: 'header-shoes',
+    name: 'SHOES (Sneaker Brand)',
+    tag: 'Latest Reference 1',
+    description: 'Minimalist e-commerce header with sneaker silhouette logo, black pill active Home tab, and search/cart actions.',
+    component: Header_Shoes,
+    bg: 'bg-white',
+  },
+  {
+    id: 'header-nexum',
+    name: 'NEXUM™ (Agency Dark Bar)',
+    tag: 'Latest Reference 2',
+    description: 'Dark slate bar with bold uppercase NEXUM™ typography, wide-spaced nav links, and white pill "Get in touch" with arrow.',
+    component: Header_Nexum,
+    bg: 'bg-[#0f1013]',
+  },
+  {
+    id: 'header-healance',
+    name: 'Healance (Frosted Wellness)',
+    tag: 'Latest Reference 3',
+    description: 'Translucent glassmorphic header on outdoor nature backdrop with 4-square cross emblem and dual pill buttons.',
+    component: Header_Healance,
+    bg: 'bg-gradient-to-r from-stone-800 via-neutral-800 to-zinc-800',
+  },
+  {
+    id: 'header-mathim',
+    name: 'MATHIM (EdTech Ribbon)',
+    tag: 'Latest Reference 4',
+    description: 'Pastel mint gradient header with checkmark MATHIM logo and signature angled polygon "Join Today!" ribbon button.',
+    component: Header_Mathim,
+    bg: 'bg-[#edf7f1]',
+  },
+  {
+    id: 'header-easyweek',
+    name: 'EasyWeek (Octopus Pill)',
+    tag: 'Latest Reference 5',
+    description: 'Floating black rounded bar with line-art octopus emblem, vibrant green "Why EasyWeek" highlight, and white Sign up pill.',
+    component: Header_EasyWeek,
+    bg: 'bg-slate-200',
+  },
+  {
     id: 'header-teamsync',
     name: 'TeamSync (Center Logo)',
-    tag: 'New Reference 1',
+    tag: 'Reference',
     description: 'Clean white header with links on left, centered TeamSync star emblem logo, and Log In / dark pill Sign Up on right.',
     component: Header_TeamSync,
     bg: 'bg-slate-100',
   },
   {
     id: 'header-nurap',
-    name: 'NURAP (Minimal Luxury Editorial)',
-    tag: 'New Reference 2',
+    name: 'NURAP (Luxury Editorial)',
+    tag: 'Editorial',
     description: 'Ultra-minimalist editorial header with two-line MANU toggle on left, spaced serif NURAP in center, and CONTACT ✉ on right.',
     component: Header_Nurap,
     bg: 'bg-[#edf1ed]',
@@ -39,7 +84,7 @@ const headersList = [
   {
     id: 'header-untitledui',
     name: 'Untitled UI (Fintech Pill)',
-    tag: 'New Reference 3',
+    tag: 'Fintech',
     description: 'Starburst badge logo, dropdown navigation links, and dark pill Get Started button with lightning bolt icon.',
     component: Header_UntitledUI,
     bg: 'bg-[#e3e6dc]',
@@ -95,7 +140,7 @@ const headersList = [
 ];
 
 export function App() {
-  const [selectedHeaderId, setSelectedHeaderId] = useState('header-teamsync');
+  const [selectedHeaderId, setSelectedHeaderId] = useState('header-shoes');
   const [viewMode, setViewMode] = useState('single'); // 'single' | 'all'
   const [deviceSize, setDeviceSize] = useState('desktop'); // 'desktop' | 'tablet' | 'mobile'
   const [copied, setCopied] = useState(false);
@@ -131,11 +176,11 @@ export function App() {
               <h1 className="text-base font-bold text-slate-900 leading-tight flex items-center gap-2">
                 Responsive Headers Suite
                 <span className="text-[11px] font-semibold bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full border border-indigo-100">
-                  React + Tailwind
+                  {headersList.length} Headers • React + Tailwind
                 </span>
               </h1>
               <p className="text-xs text-slate-500 font-medium">
-                Side Slider Menu Enabled • Data: <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-[11px]">src/data/headerData.js</code>
+                Side Slider Drawer On Mobile • Shared Data: <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-[11px]">src/data/headerData.js</code>
               </p>
             </div>
           </div>
