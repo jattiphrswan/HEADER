@@ -1,3 +1,7 @@
+export { Header_DeeperSignals } from './Header_DeeperSignals';
+export { Header_Gencio } from './Header_Gencio';
+export { Header_LotusPill } from './Header_LotusPill';
+export { Header_Connect } from './Header_Connect';
 export { Header_EstateLand } from './Header_EstateLand';
 export { Header_FundBux } from './Header_FundBux';
 export { Header_FinanDox } from './Header_FinanDox';

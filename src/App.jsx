@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { 
+  Header_DeeperSignals,
+  Header_Gencio,
+  Header_LotusPill,
+  Header_Connect,
   Header_EstateLand,
   Header_FundBux,
   Header_FinanDox,
@@ -31,9 +35,41 @@ import {
 
 const headersList = [
   {
+    id: 'header-deepersignals',
+    name: 'Deeper Signals (Magenta Gradient)',
+    tag: 'Latest 1',
+    description: 'Vibrant crimson/magenta gradient header with 3D wireframe polyhedral gem logo, white Contact ↗ pill, and clean navigation.',
+    component: Header_DeeperSignals,
+    bg: 'bg-gradient-to-r from-rose-900 via-pink-900 to-rose-950',
+  },
+  {
+    id: 'header-gencio',
+    name: 'GENCiO (Announcement + Bold Bar)',
+    tag: 'Latest 2',
+    description: 'Dual-tier header with top purple announcement carousel bar and white main bar featuring bold uppercase links, email, and red Get Quote button.',
+    component: Header_Gencio,
+    bg: 'bg-slate-100',
+  },
+  {
+    id: 'header-lotuspill',
+    name: 'Lotus (Skeuomorphic Capsule Pill)',
+    tag: 'Latest 3',
+    description: 'Coral lotus emblem with floating dark skeuomorphic pill bar, inset embossed Feature tab, and circular 4-square app grid button.',
+    component: Header_LotusPill,
+    bg: 'bg-slate-200',
+  },
+  {
+    id: 'header-connect',
+    name: 'Connect. (Modern E-Commerce)',
+    tag: 'Latest 4',
+    description: 'Minimal e-commerce header with orange dot brand logo, wide spaced navigation, and quick search, account, wishlist, and cart action icons.',
+    component: Header_Connect,
+    bg: 'bg-white',
+  },
+  {
     id: 'header-estateland',
     name: 'Estate Land (Sky Blue Real Estate)',
-    tag: 'New 1',
+    tag: 'Real Estate',
     description: 'Symmetrical real estate layout on soft sky blue with cursive script logo, active teal underline, and balanced navigation.',
     component: Header_EstateLand,
     bg: 'bg-[#d2e8f4]',
@@ -41,7 +77,7 @@ const headersList = [
   {
     id: 'header-fundbux',
     name: 'FundBux (Charity Foundation)',
-    tag: 'New 2',
+    tag: 'Charity',
     description: 'Dual-tier non-profit header with top contact utility bar, colorful raising hands emblem, active red tab, and golden Donate button.',
     component: Header_FundBux,
     bg: 'bg-white',
@@ -49,7 +85,7 @@ const headersList = [
   {
     id: 'header-finandox',
     name: 'FinanDox. (Corporate Ribbon)',
-    tag: 'New 3',
+    tag: 'Corporate',
     description: 'Corporate dual-tier header: top navy bar with contact details and Get A Quote pill, plus bottom vibrant terracotta orange navigation ribbon.',
     component: Header_FinanDox,
     bg: 'bg-[#09111c]',
@@ -57,7 +93,7 @@ const headersList = [
   {
     id: 'header-auralytica',
     name: 'AURALYTICA (Enterprise AI)',
-    tag: 'New 4',
+    tag: 'AI Dark',
     description: 'Futuristic enterprise AI dark header with centered diamond matrix emblem, symmetrical navigation links, and Watch Demo pill.',
     component: Header_Auralytica,
     bg: 'bg-[#0a0a0d]',
@@ -65,7 +101,7 @@ const headersList = [
   {
     id: 'header-datapress',
     name: 'DataPress. (Angled Ribbon)',
-    tag: 'New 5',
+    tag: 'Data Science',
     description: 'Data science header with royal blue angled trapezoid top ribbon, geometric nodes emblem, and boxed Get A Quote button with arrow square.',
     component: Header_DataPress,
     bg: 'bg-slate-100',
@@ -185,7 +221,7 @@ const headersList = [
 ];
 
 export function App() {
-  const [selectedHeaderId, setSelectedHeaderId] = useState('header-estateland');
+  const [selectedHeaderId, setSelectedHeaderId] = useState('header-deepersignals');
   const [viewMode, setViewMode] = useState('single'); // 'single' | 'all'
   const [deviceSize, setDeviceSize] = useState('desktop'); // 'desktop' | 'tablet' | 'mobile'
   const [copied, setCopied] = useState(false);
@@ -427,7 +463,7 @@ export function App() {
 
       {/* Footer */}
       <footer className="mt-auto py-6 border-t border-slate-200 bg-white text-center text-xs text-slate-500">
-        Responsive Header Collection • Built with React & Tailwind CSS • 19 Production Headers Ready
+        Responsive Header Collection • Built with React & Tailwind CSS • 23 Production Headers Ready
       </footer>
     </div>
   );

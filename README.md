@@ -1,6 +1,6 @@
 # Modern React & Tailwind CSS Responsive Header Suite
 
-A complete collection of **19 pixel-perfect, responsive headers** built in **React** and **Tailwind CSS**. All headers share centralized data from `src/data/headerData.js` and feature off-canvas **Side Slider drawers** on mobile devices.
+A complete collection of **23 pixel-perfect, responsive headers** built in **React** and **Tailwind CSS**. All headers share centralized data from `src/data/headerData.js` and feature off-canvas **Side Slider drawers** on mobile devices.
 
 ---
 
@@ -16,6 +16,10 @@ header/
 │   │   │   ├── MobileSideDrawer.jsx  # Reusable smooth slide-in mobile drawer
 │   │   │   └── SoRunLogo.jsx         # Custom SVG coiled logo
 │   │   └── headers/
+│   │       ├── Header_DeeperSignals.jsx  # 🔴 Deeper Signals magenta gradient & 3D polyhedral gem
+│   │       ├── Header_Gencio.jsx         # 🟣 GENCiO purple announcement bar & bold red quote button
+│   │       ├── Header_LotusPill.jsx      # 🪷 Lotus skeuomorphic dark capsule & app grid button
+│   │       ├── Header_Connect.jsx        # 🟠 Connect. e-commerce with orange dot & shopping icons
 │   │       ├── Header_EstateLand.jsx     # 🏡 Estate Land sky blue real estate header
 │   │       ├── Header_FundBux.jsx        # 🤝 FundBux dual-tier charity foundation header
 │   │       ├── Header_FinanDox.jsx       # 💼 FinanDox corporate navy & orange ribbon

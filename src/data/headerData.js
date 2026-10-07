@@ -1,5 +1,82 @@
 // Centralized Header Data used across all header variations in src/data/
 
+export const deeperSignalsHeaderData = {
+  brand: {
+    name: "DEEPER",
+    subtitle: "SIGNALS",
+    href: "#",
+  },
+  navigation: [
+    { id: "solutions", label: "Solutions", href: "#solutions" },
+    { id: "products", label: "Products", href: "#products" },
+    { id: "science", label: "Science", href: "#science" },
+    { id: "pricing", label: "Pricing", href: "#pricing" },
+  ],
+  actions: {
+    contact: { label: "Contact", href: "#contact" },
+    login: { label: "Log in", href: "#login" },
+  },
+};
+
+export const gencioHeaderData = {
+  announcement: {
+    text: "Opportunity Available: Web Developer (02 Years Work Experience)",
+  },
+  brand: {
+    name: "GENCiO",
+    href: "#",
+  },
+  navigation: [
+    { id: "home", label: "HOME +", href: "#home" },
+    { id: "pages", label: "PAGES -", href: "#pages" },
+    { id: "shop", label: "SHOP +", href: "#shop" },
+    { id: "news", label: "NEWS +", href: "#news" },
+    { id: "contact", label: "CONTACT", href: "#contact" },
+  ],
+  contact: {
+    email: "INFO@GENCIO.COM",
+    quoteLabel: "GET QUOTE",
+    quoteHref: "#quote",
+  },
+};
+
+export const lotusPillHeaderData = {
+  brand: {
+    name: "Lotus",
+    href: "#",
+  },
+  navigation: [
+    { id: "feature", label: "Feature", href: "#feature", isActive: true },
+    { id: "company", label: "Company", href: "#company" },
+    { id: "pricing", label: "Pricing", href: "#pricing" },
+    { id: "business", label: "Business", href: "#business" },
+  ],
+  action: {
+    label: "Apps",
+    href: "#apps",
+  },
+};
+
+export const connectHeaderData = {
+  brand: {
+    name: "Connect",
+    dotColor: "text-orange-500",
+    href: "#",
+  },
+  navigation: [
+    { id: "new-arrival", label: "New Arrival", href: "#new-arrival" },
+    { id: "page", label: "Page", href: "#page" },
+    { id: "shop", label: "Shop", href: "#shop" },
+    { id: "blog", label: "Blog", href: "#blog" },
+  ],
+  actions: {
+    search: { href: "#search" },
+    user: { href: "#account" },
+    wishlist: { count: 2, href: "#wishlist" },
+    cart: { count: 1, href: "#cart" },
+  },
+};
+
 export const estateLandHeaderData = {
   brand: {
     name: "Estate Land",
