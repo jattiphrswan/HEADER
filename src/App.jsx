@@ -24,14 +24,132 @@ import {
   Header4_MinimalLight, 
   Header5_DynamicIsland 
 } from './components/headers';
+import {
+  Hero_Enlango,
+  Hero_FinBusiness,
+  Hero_Dreamflux,
+  Hero_SynexWealth,
+  Hero_CyberGridAI,
+  Hero_AuraCreative,
+  Hero_LuminaSpatial,
+  Hero_SaaSHyperScale
+} from './components/heroes';
 import { 
   Check, 
   Copy, 
   Smartphone, 
   Tablet, 
   Monitor, 
-  Code2
+  Code2,
+  Sparkles,
+  Layers,
+  LayoutTemplate,
+  Flame,
+  ExternalLink,
+  SlidersHorizontal,
+  Zap,
+  Info,
+  Type
 } from 'lucide-react';
+
+const heroesList = [
+  {
+    id: 'hero-enlango',
+    name: 'Enlango (Language Learning)',
+    tag: 'EdTech Editorial',
+    highlight: 'Matching Screenshot 1',
+    font: 'Playfair Display Italic + Plus Jakarta Sans',
+    colorScheme: 'Royal Blue (#2563eb) & Crisp White',
+    description: 'Human-crafted language platform with inline avatar pill inside headline, elegant blue italic serif typography, TrustPilot badge, and interactive skill chips.',
+    component: Hero_Enlango,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS', 'Google Fonts'],
+    interactivity: 'Clickable skill badges (+ Listening, + Reading, + Speaking), Group vs 1-to-1 session toggle, and free trial registration modal.'
+  },
+  {
+    id: 'hero-finbusiness',
+    name: 'FinApp (Business Multi-Currency)',
+    tag: 'Fintech SaaS',
+    highlight: 'Matching Screenshot 2',
+    font: 'Plus Jakarta Sans (Geometric Humanist)',
+    colorScheme: 'High-Contrast Monochrome & Slate',
+    description: 'Clean business banking hero with multi-currency conversion calculator, real mid-market exchange rates, and interactive bar chart with tooltip hover.',
+    component: Hero_FinBusiness,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS', 'Google Fonts'],
+    interactivity: 'Interactive send amount calculator, currency dropdown (AUD, EUR, GBP, JPY), live exchange rate math, and hoverable chart bars.'
+  },
+  {
+    id: 'hero-dreamflux',
+    name: 'Dreamflux.ai (Generative Visuals)',
+    tag: 'Creative AI',
+    highlight: 'Matching Screenshot 3',
+    font: 'Syne (Editorial Modern) + Plus Jakarta Sans',
+    colorScheme: 'Modern Minimalist Pure White & Black',
+    description: 'Ultra-clean creative visual platform hero with architectural editorial masonry artwork grid, interactive prompt remixer, and lightbox detail modal.',
+    component: Hero_Dreamflux,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS', 'Google Fonts'],
+    interactivity: 'Click any artwork in the masonry grid to open lightbox modal with full prompt metadata, quick prompt generation input field.'
+  },
+  {
+    id: 'hero-synex',
+    name: 'Synex Wealth Management',
+    tag: 'Wealth & 3D Glass',
+    highlight: 'Nordic 3D Landscape',
+    font: 'Plus Jakarta Sans + Monospace',
+    colorScheme: 'Cinematic Fjord & Frosted Dark Slate',
+    description: 'Immersive wealth management hero with 3D perspective dashboard, interactive timeframe frequency bar chart, crypto asset selector, and bottom video player scrubber.',
+    component: Hero_SynexWealth,
+    libraries: ['Motion', 'HTML5 Canvas', 'Tailwind CSS', 'Lucide React'],
+    interactivity: 'Play/Pause video timeline scrubber, click timeframes (1D, 1W, 1M, ALL), crypto asset pills, 3D mouse tilt, and Launch App modal.'
+  },
+  {
+    id: 'hero-cybergrid',
+    name: 'CyberGrid AI Neural Mesh',
+    tag: 'WebGL 3D Tech',
+    highlight: 'Three.js 3D WebGL',
+    font: 'Space Grotesk + JetBrains Mono',
+    colorScheme: 'Deep Space Obsidian & Cyan Neon',
+    description: 'Dark sci-fi generative AI platform featuring a live interactive Three.js 3D rotating neural mesh with glowing vertices, prompt REPL code streamer, and live telemetry HUD.',
+    component: Hero_CyberGridAI,
+    libraries: ['Three.js (WebGL)', 'Motion', 'Tailwind CSS', 'Lucide React'],
+    interactivity: 'Drag to rotate 3D mesh, switch AI models, adjust temperature slider, run live code inference, and switch wireframe colors.'
+  },
+  {
+    id: 'hero-aura',
+    name: 'Aura Creative Studio',
+    tag: 'Creative Studio Bento',
+    highlight: 'Physics + Confetti',
+    font: 'Outfit + Plus Jakarta Sans',
+    colorScheme: 'Dynamic Gradient Morpher',
+    description: 'Dynamic design studio hero with draggable physics bento cards, real canvas-confetti particle blast, color theme morpher, and sound reactive audio waveform.',
+    component: Hero_AuraCreative,
+    libraries: ['Motion (Drag Physics)', 'Canvas-Confetti', 'Tailwind CSS', 'Lucide React'],
+    interactivity: 'Drag stickers anywhere on screen, click Confetti Cannon or Join VIP for celebratory particles, toggle sound wave, switch theme palette.'
+  },
+  {
+    id: 'hero-lumina',
+    name: 'Lumina Spatial Hardware',
+    tag: 'Spatial Hardware',
+    highlight: '3D Hotspots',
+    font: 'Instrument Serif & Space Grotesk',
+    colorScheme: 'Titanium & Ambient Radial Teal',
+    description: 'Spatial computing hardware showcase with mouse 3D depth tilt, pulsing interactive hardware pins revealing spec modals, finish colorway switcher, and checkout drawer.',
+    component: Hero_LuminaSpatial,
+    libraries: ['Motion', '3D Perspective Tilt', 'Tailwind CSS', 'Lucide React'],
+    interactivity: 'Tilt device with cursor, click pins on the headset (Optics, M4 Neural Core, Audio), switch finish colors, test Reserve Lumina drawer.'
+  },
+  {
+    id: 'hero-hyperscale',
+    name: 'HyperScale Cloud & Dev Platform',
+    tag: 'Cloud Infrastructure',
+    highlight: 'Live Ticker + Pipeline',
+    font: 'Plus Jakarta Sans + Monospace',
+    colorScheme: 'Midnight Slate & Electric Sky Blue',
+    description: 'Developer infrastructure hero with live global requests/sec counter, interactive 3-step zero-downtime deployment simulator, and edge topology ping map.',
+    component: Hero_SaaSHyperScale,
+    libraries: ['Motion', 'Live Animated Ticker', 'Tailwind CSS', 'Lucide React'],
+    interactivity: 'Click "Deploy Demo" for live multi-step deployment animation, switch architecture tabs (CDN, Compute, Database), copy CLI install command.'
+  }
+];
 
 const headersList = [
   {
@@ -221,62 +339,121 @@ const headersList = [
 ];
 
 export function App() {
+  const [activeTab, setActiveTab] = useState('heroes'); // 'heroes' | 'headers' | 'pair'
+  const [selectedHeroId, setSelectedHeroId] = useState('hero-enlango');
   const [selectedHeaderId, setSelectedHeaderId] = useState('header-deepersignals');
   const [viewMode, setViewMode] = useState('single'); // 'single' | 'all'
   const [deviceSize, setDeviceSize] = useState('desktop'); // 'desktop' | 'tablet' | 'mobile'
   const [copied, setCopied] = useState(false);
 
+  const activeHero = heroesList.find((h) => h.id === selectedHeroId) || heroesList[0];
+  const ActiveHeroComponent = activeHero.component;
+
   const activeHeader = headersList.find((h) => h.id === selectedHeaderId) || headersList[0];
-  const ActiveComponent = activeHeader.component;
+  const ActiveHeaderComponent = activeHeader.component;
 
   const isForcedMobile = deviceSize === 'mobile';
 
   const handleCopyCode = () => {
-    const importCode = `import { ${activeHeader.component.name} } from './components/headers';\n\n<${activeHeader.component.name} />`;
-    navigator.clipboard?.writeText(importCode);
+    let code = '';
+    if (activeTab === 'heroes') {
+      code = `import { ${activeHero.component.name} } from './components/heroes';\n\n// Typography: ${activeHero.font}\n// Color Scheme: ${activeHero.colorScheme}\n<${activeHero.component.name} />`;
+    } else {
+      code = `import { ${activeHeader.component.name} } from './components/headers';\n\n<${activeHeader.component.name} />`;
+    }
+    navigator.clipboard?.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const getContainerWidth = () => {
-    if (deviceSize === 'mobile') return 'max-w-[390px]';
+    if (deviceSize === 'mobile') return 'max-w-[400px]';
     if (deviceSize === 'tablet') return 'max-w-[768px]';
     return 'w-full';
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f4f8] text-slate-800 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#0e1117] text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       {/* Top Banner / Studio Toolbar */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 shadow-sm">
+      <header className="sticky top-0 z-50 bg-[#161b26]/95 backdrop-blur-xl border-b border-white/10 px-4 sm:px-8 py-3.5 shadow-2xl">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+          {/* Brand & Title */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center font-bold text-sm shadow-md">
-              H
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-rose-500 text-white flex items-center justify-center font-black text-base shadow-lg shadow-blue-500/20">
+              ⚡
             </div>
             <div>
-              <h1 className="text-base font-bold text-slate-900 leading-tight flex items-center gap-2">
-                Responsive Headers Suite
-                <span className="text-[11px] font-semibold bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full border border-indigo-100">
-                  {headersList.length} Headers • React + Tailwind
+              <h1 className="text-base font-extrabold text-white leading-tight flex items-center gap-2">
+                Responsive Hero & Header Studio
+                <span className="text-[11px] font-bold bg-blue-500/20 text-blue-300 px-2.5 py-0.5 rounded-full border border-blue-500/30">
+                  {heroesList.length} Heroes • Human Design • Custom Fonts
                 </span>
               </h1>
-              <p className="text-xs text-slate-500 font-medium">
-                Side Slider Drawer On Mobile • Shared Data: <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-[11px]">src/data/headerData.js</code>
+              <p className="text-xs text-slate-400 font-medium">
+                Real Human Aesthetics • Working Micro-Interactions • Fully Responsive
               </p>
             </div>
           </div>
 
-          {/* Controls: Device Viewport Switcher + Mode Switcher */}
+          {/* Main Studio Navigation Switcher */}
+          <div className="flex items-center bg-black/40 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+            <button
+              onClick={() => {
+                setActiveTab('heroes');
+                setViewMode('single');
+              }}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'heroes'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Hero Sections ({heroesList.length})</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('headers');
+                setViewMode('single');
+              }}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'headers'
+                  ? 'bg-white text-neutral-900 shadow-lg'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <LayoutTemplate className="w-3.5 h-3.5" />
+              <span>Headers Library ({headersList.length})</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('pair');
+                setViewMode('single');
+              }}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'pair'
+                  ? 'bg-gradient-to-r from-purple-500 to-rose-500 text-white shadow-lg'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Pair Studio</span>
+            </button>
+          </div>
+
+          {/* Controls: Device Viewport Switcher + Copy Code */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {/* Device Viewport Toggle */}
-            <div className="bg-slate-100 p-1 rounded-xl flex items-center gap-1 border border-slate-200/60">
+            <div className="bg-black/40 p-1 rounded-xl flex items-center gap-1 border border-white/10">
               <button
                 onClick={() => setDeviceSize('desktop')}
                 title="Desktop View (Full Width)"
                 className={`p-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
                   deviceSize === 'desktop'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white/20 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <Monitor className="w-3.5 h-3.5" />
@@ -287,8 +464,8 @@ export function App() {
                 title="Tablet View (768px)"
                 className={`p-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
                   deviceSize === 'tablet'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white/20 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <Tablet className="w-3.5 h-3.5" />
@@ -296,55 +473,87 @@ export function App() {
               </button>
               <button
                 onClick={() => setDeviceSize('mobile')}
-                title="Mobile View (390px)"
+                title="Mobile View (400px)"
                 className={`p-1.5 px-2.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
                   deviceSize === 'mobile'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white/20 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <Smartphone className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Mobile (Side Slider)</span>
+                <span className="hidden sm:inline">Mobile</span>
               </button>
             </div>
 
             {/* Mode Switcher */}
-            <div className="bg-slate-100 p-1 rounded-xl flex items-center gap-1 border border-slate-200/60">
-              <button
-                onClick={() => setViewMode('single')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
-                  viewMode === 'single'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Single Header
-              </button>
-              <button
-                onClick={() => setViewMode('all')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
-                  viewMode === 'all'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                View All ({headersList.length})
-              </button>
-            </div>
+            {activeTab !== 'pair' && (
+              <div className="bg-black/40 p-1 rounded-xl flex items-center gap-1 border border-white/10">
+                <button
+                  onClick={() => setViewMode('single')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    viewMode === 'single'
+                      ? 'bg-white/20 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Single
+                </button>
+                <button
+                  onClick={() => setViewMode('all')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                    viewMode === 'all'
+                      ? 'bg-white/20 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  View All
+                </button>
+              </div>
+            )}
 
             <button
               onClick={handleCopyCode}
-              className="inline-flex items-center gap-1.5 bg-black hover:bg-slate-800 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition shadow-sm active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs px-3.5 py-2 rounded-xl transition shadow-lg shadow-blue-500/20 active:scale-95 cursor-pointer"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied!' : 'Copy Code'}</span>
+              {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copied ? 'Copied JSX!' : 'Copy Code'}</span>
             </button>
           </div>
         </div>
 
-        {/* Header Variation Pills Selector */}
-        {viewMode === 'single' && (
-          <div className="max-w-7xl mx-auto mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+        {/* Tab-Specific Sub-Nav Pills */}
+        {activeTab === 'heroes' && viewMode === 'single' && (
+          <div className="max-w-7xl mx-auto mt-3 pt-3 border-t border-white/10 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {heroesList.map((hero) => {
+              const isSelected = selectedHeroId === hero.id;
+              return (
+                <button
+                  key={hero.id}
+                  onClick={() => setSelectedHeroId(hero.id)}
+                  className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                    isSelected
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
+                      : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-white/10'
+                  }`}
+                >
+                  <span>{hero.name}</span>
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-extrabold ${
+                      isSelected
+                        ? 'bg-white text-blue-900'
+                        : 'bg-white/10 text-blue-300'
+                    }`}
+                  >
+                    {hero.highlight}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {activeTab === 'headers' && viewMode === 'single' && (
+          <div className="max-w-7xl mx-auto mt-3 pt-3 border-t border-white/10 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
             {headersList.map((header) => {
               const isSelected = selectedHeaderId === header.id;
               return (
@@ -353,18 +562,12 @@ export function App() {
                   onClick={() => setSelectedHeaderId(header.id)}
                   className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                     isSelected
-                      ? 'bg-black text-white shadow-md shadow-black/10 scale-[1.02]'
-                      : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+                      ? 'bg-white text-black shadow-md scale-105'
+                      : 'bg-slate-900 hover:bg-slate-800 text-slate-400 border border-white/10'
                   }`}
                 >
                   <span>{header.name}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                      isSelected
-                        ? 'bg-white/20 text-white'
-                        : 'bg-slate-100 text-slate-600'
-                    }`}
-                  >
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full font-bold bg-white/10 text-slate-300">
                     {header.tag}
                   </span>
                 </button>
@@ -376,70 +579,151 @@ export function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 flex flex-col gap-8">
-        {viewMode === 'single' ? (
-          <div className="flex flex-col gap-6">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden transition-all">
-              <div className={`p-4 sm:p-12 transition-colors duration-300 min-h-[160px] flex items-center justify-center ${activeHeader.bg}`}>
-                <div className={`transition-all duration-300 mx-auto ${getContainerWidth()}`}>
-                  <ActiveComponent forcedMobile={isForcedMobile} />
-                </div>
-              </div>
-
-              <div className="p-6 bg-white border-t border-slate-100 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        {/* TAB 1: HEROES SHOWCASE */}
+        {activeTab === 'heroes' && (
+          viewMode === 'single' ? (
+            <div className="flex flex-col gap-6">
+              {/* Human Typography & Color Metadata Banner */}
+              <div className="bg-[#161b26] border border-white/10 rounded-2xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-bold text-slate-900">
-                      {activeHeader.name}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="text-xl font-extrabold text-white">
+                      {activeHero.name}
                     </h2>
-                    <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800">
-                      {activeHeader.tag}
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                      {activeHero.tag}
                     </span>
-                    <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-slate-100 text-slate-700 uppercase">
-                      Device Viewport: {deviceSize}
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      {activeHero.highlight}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-600 mt-1 max-w-2xl">
-                    {activeHeader.description}
+                  <p className="text-xs text-slate-400 mt-1.5 max-w-3xl leading-relaxed">
+                    {activeHero.description}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 w-full lg:w-auto">
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-700 flex items-center gap-2">
-                    <Code2 className="w-4 h-4 text-indigo-500" />
-                    <span>src/components/headers/{activeHeader.component.name}.jsx</span>
+                {/* Typography and Colors Specs */}
+                <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-300 font-medium">
+                    <Type className="w-3.5 h-3.5 text-blue-400" />
+                    <span>Font: <strong className="text-white">{activeHero.font}</strong></span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
+                    <span>Colors: {activeHero.colorScheme}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Working Interactivity Hint */}
+              <div className="bg-gradient-to-r from-blue-950/60 via-slate-900 to-indigo-950/60 border border-blue-500/20 rounded-2xl p-3 flex items-center gap-3 text-xs text-blue-200">
+                <div className="w-7 h-7 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-4 h-4 text-blue-400" />
+                </div>
+                <span>
+                  <strong>Interactive Real Human Elements:</strong> {activeHero.interactivity}
+                </span>
+              </div>
+
+              {/* The Hero Preview Container */}
+              <div className="w-full flex justify-center">
+                <div className={`transition-all duration-300 w-full ${getContainerWidth()}`}>
+                  <ActiveHeroComponent />
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* View All Heroes Side-by-Side */
+            <div className="flex flex-col gap-14">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-black text-white">All {heroesList.length} Responsive Hero Sections</h2>
+                  <p className="text-sm text-slate-400">
+                    Crafted with distinct human typography, authentic color palettes, and working micro-interactions.
+                  </p>
+                </div>
+              </div>
+
+              {heroesList.map((hero, idx) => {
+                const HeroComp = hero.component;
+                return (
+                  <div key={hero.id} className="bg-[#161b26] border border-white/10 rounded-3xl p-6 shadow-2xl space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+                      <div className="flex items-center gap-3">
+                        <span className="w-7 h-7 rounded-xl bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center">
+                          {idx + 1}
+                        </span>
+                        <div>
+                          <h3 className="text-lg font-bold text-white">{hero.name}</h3>
+                          <p className="text-xs text-slate-400">{hero.font} • {hero.colorScheme}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {hero.libraries.map((lib) => (
+                          <span key={lib} className="text-[10px] font-mono bg-black/60 text-blue-300 px-2 py-0.5 rounded border border-white/10">
+                            {lib}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className={`mx-auto ${getContainerWidth()}`}>
+                      <HeroComp />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )
+        )}
+
+        {/* TAB 2: HEADERS LIBRARY */}
+        {activeTab === 'headers' && (
+          viewMode === 'single' ? (
+            <div className="flex flex-col gap-6">
+              <div className="bg-[#161b26] border border-white/10 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xl">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-white">{activeHeader.name}</h2>
+                    <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-emerald-500/20 text-emerald-300">
+                      {activeHeader.tag}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-1 max-w-2xl">{activeHeader.description}</p>
+                </div>
+
+                <div className="bg-slate-900 border border-white/10 rounded-xl px-3 py-1.5 text-xs font-mono text-slate-300 flex items-center gap-2">
+                  <Code2 className="w-4 h-4 text-cyan-400" />
+                  <span>src/components/headers/{activeHeader.component.name}.jsx</span>
+                </div>
+              </div>
+
+              {/* Header preview container */}
+              <div className="bg-[#161b26] rounded-3xl border border-white/10 p-6 sm:p-12 overflow-hidden shadow-2xl">
+                <div className={`p-4 sm:p-10 rounded-2xl ${activeHeader.bg} flex items-center justify-center`}>
+                  <div className={`transition-all duration-300 mx-auto ${getContainerWidth()}`}>
+                    <ActiveHeaderComponent forcedMobile={isForcedMobile} />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          /* View All Headers Side-by-Side */
-          <div className="flex flex-col gap-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold text-slate-900">All {headersList.length} Responsive Headers</h2>
-                <p className="text-sm text-slate-600">
-                  Showing all headers for viewport: <span className="font-semibold uppercase text-indigo-600">{deviceSize}</span>
-                </p>
-              </div>
-            </div>
-
+          ) : (
             <div className="flex flex-col gap-8">
               {headersList.map((header, idx) => {
                 const Component = header.component;
                 return (
-                  <div key={header.id} className="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden">
-                    <div className="px-6 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                  <div key={header.id} className="bg-[#161b26] rounded-3xl border border-white/10 shadow-md overflow-hidden">
+                    <div className="px-6 py-3 bg-slate-900 border-b border-white/10 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold">
+                        <span className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center text-xs font-bold">
                           {idx + 1}
                         </span>
-                        <span className="text-sm font-bold text-slate-900">{header.name}</span>
-                        <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-200 text-slate-700">
+                        <span className="text-sm font-bold text-white">{header.name}</span>
+                        <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-white/10 text-slate-300">
                           {header.tag}
                         </span>
                       </div>
-                      <span className="text-xs text-slate-500 font-mono">
+                      <span className="text-xs text-slate-400 font-mono">
                         {header.component.name}.jsx
                       </span>
                     </div>
@@ -449,21 +733,82 @@ export function App() {
                         <Component forcedMobile={isForcedMobile} />
                       </div>
                     </div>
-
-                    <div className="px-6 py-3 bg-white border-t border-slate-100 text-xs text-slate-600">
-                      {header.description}
-                    </div>
                   </div>
                 );
               })}
+            </div>
+          )
+        )}
+
+        {/* TAB 3: PAIR STUDIO */}
+        {activeTab === 'pair' && (
+          <div className="flex flex-col gap-6">
+            <div className="bg-[#161b26] border border-white/10 rounded-2xl p-5 shadow-xl flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-purple-400" />
+                  Pair Any Header with Any Hero Section
+                </h2>
+                <p className="text-xs text-slate-400 mt-1">
+                  Test layouts, visual contrast, brand alignments, and responsive composition.
+                </p>
+              </div>
+
+              {/* Selectors */}
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Select Header */}
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-slate-400 font-semibold">Header:</span>
+                  <select
+                    value={selectedHeaderId}
+                    onChange={(e) => setSelectedHeaderId(e.target.value)}
+                    className="bg-slate-900 border border-white/20 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-blue-400 cursor-pointer"
+                  >
+                    {headersList.map((h) => (
+                      <option key={h.id} value={h.id}>
+                        {h.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Select Hero */}
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-slate-400 font-semibold">Hero:</span>
+                  <select
+                    value={selectedHeroId}
+                    onChange={(e) => setSelectedHeroId(e.target.value)}
+                    className="bg-slate-900 border border-white/20 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-blue-400 cursor-pointer"
+                  >
+                    {heroesList.map((h) => (
+                      <option key={h.id} value={h.id}>
+                        {h.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Combined Mockup Container */}
+            <div className={`mx-auto w-full ${getContainerWidth()} flex flex-col gap-4`}>
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                <ActiveHeaderComponent forcedMobile={isForcedMobile} />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <ActiveHeroComponent />
+              </div>
             </div>
           </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto py-6 border-t border-slate-200 bg-white text-center text-xs text-slate-500">
-        Responsive Header Collection • Built with React & Tailwind CSS • 23 Production Headers Ready
+      <footer className="mt-auto py-8 border-t border-white/10 bg-[#161b26] text-center text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 gap-4">
+          <span>Human-Crafted Hero & Header Collection • React 19, Motion, Three.js & Tailwind CSS</span>
+          <span className="text-blue-400 font-mono">8 Interactive Heroes • 23 Responsive Headers</span>
+        </div>
       </footer>
     </div>
   );
