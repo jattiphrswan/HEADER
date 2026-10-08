@@ -1,7 +1,12 @@
-export { Hero_SynexWealth } from './Hero_SynexWealth';
+export { Hero_FirstTransport } from './Hero_FirstTransport';
+export { Hero_NorwegianCruise } from './Hero_NorwegianCruise';
+export { Hero_SunEco } from './Hero_SunEco';
+export { Hero_PrimadonaRealEstate } from './Hero_PrimadonaRealEstate';
+export { Hero_StylecraftDesign } from './Hero_StylecraftDesign';
 export { Hero_Enlango } from './Hero_Enlango';
 export { Hero_FinBusiness } from './Hero_FinBusiness';
 export { Hero_Dreamflux } from './Hero_Dreamflux';
+export { Hero_SynexWealth } from './Hero_SynexWealth';
 export { Hero_CyberGridAI } from './Hero_CyberGridAI';
 export { Hero_AuraCreative } from './Hero_AuraCreative';
 export { Hero_LuminaSpatial } from './Hero_LuminaSpatial';

@@ -25,6 +25,11 @@ import {
   Header5_DynamicIsland 
 } from './components/headers';
 import {
+  Hero_FirstTransport,
+  Hero_NorwegianCruise,
+  Hero_SunEco,
+  Hero_PrimadonaRealEstate,
+  Hero_StylecraftDesign,
   Hero_Enlango,
   Hero_FinBusiness,
   Hero_Dreamflux,
@@ -54,10 +59,70 @@ import {
 
 const heroesList = [
   {
+    id: 'hero-firsttransport',
+    name: 'First Transport (Logistics & Haulage)',
+    tag: 'Haulage Logistics',
+    highlight: 'Truck & Highway',
+    font: 'Plus Jakarta Sans (Bold Grotesque)',
+    colorScheme: 'Open Highway Green & Deep Dark',
+    description: 'High-impact heavy haulage transport hero with white semi-trailer truck highway backdrop, bold typography, dispatch modal, and Australian logistics metrics.',
+    component: Hero_FirstTransport,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS'],
+    interactivity: 'Contact Us / Learn More triggers, dispatch category picker, fleet availability status.'
+  },
+  {
+    id: 'hero-norwegiancruise',
+    name: 'Norwegian Cruise (Luxury Ocean)',
+    tag: 'Luxury Travel',
+    highlight: 'Aerial Ocean Ship',
+    font: 'Playfair Display Italic + Plus Jakarta Sans',
+    colorScheme: 'Deep Ocean Azure & Frosted Mist',
+    description: 'Breathtaking ocean voyage hero with aerial top-down cruise ship backdrop, elegant serif italic headline, interactive video reel modal, and stateroom booking drawer.',
+    component: Hero_NorwegianCruise,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS'],
+    interactivity: 'Interactive pulsing Play button opening 4K voyage video reel, stateroom class booking drawer, animated scroll cue.'
+  },
+  {
+    id: 'hero-suneco',
+    name: 'SunEco (Clean Future Energy)',
+    tag: 'Clean Energy',
+    highlight: '3D Eco Diorama',
+    font: 'Plus Jakarta Sans (Crisp Modern)',
+    colorScheme: 'Fresh Eco Mint & Clean Sage',
+    description: 'Clean energy transition hero featuring 3D miniature eco-village landscape diorama with wind turbines and solar panels, plus interactive 25-year solar savings calculator.',
+    component: Hero_SunEco,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS'],
+    interactivity: 'Interactive electric bill slider ($80-$800/mo) calculating 25-year grid savings live, free site survey modal.'
+  },
+  {
+    id: 'hero-primadona',
+    name: 'Primadona (Luxury Architecture)',
+    tag: 'Real Estate Villa',
+    highlight: 'Twilight Glass Villa',
+    font: 'Plus Jakarta Sans Bold',
+    colorScheme: 'Twilight Blue Hour & Warm Interior Gold',
+    description: 'Prestigious architecture hero with evening illuminated glass villa backdrop, interactive glassmorphic property filter bar (Location, Price, Type), and viewing scheduler.',
+    component: Hero_PrimadonaRealEstate,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS'],
+    interactivity: 'Interactive location dropdown, price budget input, property type filter, and private villa tour scheduler.'
+  },
+  {
+    id: 'hero-stylecraft',
+    name: 'Stylecraft Design (Minimalist Furniture)',
+    tag: 'Interior Design',
+    highlight: 'Curved Frame & Sofa',
+    font: 'Syne Display + Plus Jakarta Sans',
+    colorScheme: 'Charcoal Velvet & Warm Oak',
+    description: 'Bespoke Scandinavian interior hero with signature curved outer frame, matte dark living room aesthetic, coral action button, and live upholstery fabric customizer.',
+    component: Hero_StylecraftDesign,
+    libraries: ['Motion', 'Lucide React', 'Tailwind CSS'],
+    interactivity: 'Interactive upholstery color swatches (Charcoal, Oatmeal, Forest), Explore More modal, free fabric sample box order.'
+  },
+  {
     id: 'hero-enlango',
     name: 'Enlango (Language Learning)',
     tag: 'EdTech Editorial',
-    highlight: 'Matching Screenshot 1',
+    highlight: 'Human Student Photo',
     font: 'Playfair Display Italic + Plus Jakarta Sans',
     colorScheme: 'Royal Blue (#2563eb) & Crisp White',
     description: 'Human-crafted language platform with inline avatar pill inside headline, elegant blue italic serif typography, TrustPilot badge, and interactive skill chips.',
@@ -69,7 +134,7 @@ const heroesList = [
     id: 'hero-finbusiness',
     name: 'FinApp (Business Multi-Currency)',
     tag: 'Fintech SaaS',
-    highlight: 'Matching Screenshot 2',
+    highlight: 'Currency Calculator',
     font: 'Plus Jakarta Sans (Geometric Humanist)',
     colorScheme: 'High-Contrast Monochrome & Slate',
     description: 'Clean business banking hero with multi-currency conversion calculator, real mid-market exchange rates, and interactive bar chart with tooltip hover.',
@@ -81,7 +146,7 @@ const heroesList = [
     id: 'hero-dreamflux',
     name: 'Dreamflux.ai (Generative Visuals)',
     tag: 'Creative AI',
-    highlight: 'Matching Screenshot 3',
+    highlight: 'Masonry Artwork Grid',
     font: 'Syne (Editorial Modern) + Plus Jakarta Sans',
     colorScheme: 'Modern Minimalist Pure White & Black',
     description: 'Ultra-clean creative visual platform hero with architectural editorial masonry artwork grid, interactive prompt remixer, and lightbox detail modal.',
@@ -340,7 +405,7 @@ const headersList = [
 
 export function App() {
   const [activeTab, setActiveTab] = useState('heroes'); // 'heroes' | 'headers' | 'pair'
-  const [selectedHeroId, setSelectedHeroId] = useState('hero-enlango');
+  const [selectedHeroId, setSelectedHeroId] = useState('hero-firsttransport');
   const [selectedHeaderId, setSelectedHeaderId] = useState('header-deepersignals');
   const [viewMode, setViewMode] = useState('single'); // 'single' | 'all'
   const [deviceSize, setDeviceSize] = useState('desktop'); // 'desktop' | 'tablet' | 'mobile'
@@ -807,7 +872,7 @@ export function App() {
       <footer className="mt-auto py-8 border-t border-white/10 bg-[#161b26] text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 gap-4">
           <span>Human-Crafted Hero & Header Collection • React 19, Motion, Three.js & Tailwind CSS</span>
-          <span className="text-blue-400 font-mono">8 Interactive Heroes • 23 Responsive Headers</span>
+          <span className="text-blue-400 font-mono">13 Interactive Heroes • 23 Responsive Headers</span>
         </div>
       </footer>
     </div>
