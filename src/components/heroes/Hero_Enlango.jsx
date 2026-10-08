@@ -81,30 +81,30 @@ export const Hero_Enlango = () => {
             </div>
 
             {/* Headline with Inline Avatar Pill and Italic Serif Accent Word */}
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.12]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.12]">
               Connect with <br />
               the{' '}
               {/* Inline Avatar Pill matching screenshot */}
               <span className="inline-flex items-center align-middle bg-slate-100 rounded-full px-1.5 py-1 -mt-1 mx-1 border border-slate-200">
-                <span className="flex -space-x-2">
+                <span className="flex -space-x-1.5 sm:-space-x-2">
                   <img
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
                     alt="Student"
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
+                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
                   />
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces"
                     alt="Student"
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
+                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
                   />
                   <img
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces"
                     alt="Student"
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
+                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
                   />
                 </span>
               </span>{' '}
-              <span className="font-editorial-italic font-normal text-blue-600 text-4xl sm:text-6xl underline decoration-blue-200 underline-offset-4">
+              <span className="font-editorial-italic font-normal text-blue-600 text-3xl sm:text-5xl lg:text-6xl underline decoration-blue-200 underline-offset-4">
                 World
               </span> <br />
               Through Words
@@ -188,34 +188,34 @@ export const Hero_Enlango = () => {
               {/* Floating Badge 2 (Center Left): 50+ Global Language Support */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="absolute top-1/3 -left-4 sm:-left-8 bg-blue-600 text-white p-4 sm:p-5 rounded-2xl shadow-xl z-20 text-left max-w-[150px]"
+                className="absolute top-1/3 left-0 sm:-left-8 bg-blue-600 text-white p-3.5 sm:p-5 rounded-2xl shadow-xl z-20 text-left max-w-[130px] sm:max-w-[150px]"
               >
-                <div className="text-2xl sm:text-3xl font-extrabold tracking-tight">50+</div>
-                <div className="text-xs text-blue-100 font-medium leading-tight mt-1">
+                <div className="text-xl sm:text-3xl font-extrabold tracking-tight">50+</div>
+                <div className="text-[10px] sm:text-xs text-blue-100 font-medium leading-tight mt-1">
                   Global Language Support
                 </div>
               </motion.div>
 
               {/* Floating Badge 3 (Middle Bottom): Add Your Skills with interactive chip toggles */}
-              <div className="absolute bottom-16 -left-2 sm:-left-6 bg-white/95 backdrop-blur-md border border-slate-100 p-4 rounded-2xl shadow-xl z-20 text-left">
-                <span className="text-xs font-bold text-slate-900 block mb-2">Add your skills</span>
-                <div className="flex flex-wrap gap-1.5">
+              <div className="absolute bottom-12 left-0 sm:-left-6 bg-white/95 backdrop-blur-md border border-slate-100 p-3 sm:p-4 rounded-2xl shadow-xl z-20 text-left max-w-[280px]">
+                <span className="text-xs font-bold text-slate-900 block mb-1.5">Add your skills</span>
+                <div className="flex flex-wrap gap-1">
                   {['Listening', 'Reading', 'Speaking'].map((skill) => {
                     const isSelected = activeSkills.includes(skill);
                     return (
                       <button
                         key={skill}
                         onClick={() => toggleSkill(skill)}
-                        className={`text-xs px-3 py-1 rounded-full font-medium transition cursor-pointer flex items-center gap-1 ${
+                        className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full font-medium transition cursor-pointer flex items-center gap-1 ${
                           isSelected
                             ? 'bg-blue-600 text-white shadow-xs'
                             : 'bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60'
                         }`}
                       >
                         {isSelected ? (
-                          <Check className="w-3 h-3" />
+                          <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                         ) : (
-                          <Plus className="w-3 h-3 text-blue-500" />
+                          <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-blue-500" />
                         )}
                         <span>{skill}</span>
                       </button>
@@ -227,10 +227,10 @@ export const Hero_Enlango = () => {
               {/* Floating Badge 4 (Bottom Right): 1500+ free Lessons */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="absolute -bottom-4 -right-2 sm:-right-6 bg-blue-600 text-white p-4 sm:p-5 rounded-2xl shadow-xl z-20 text-left max-w-[160px]"
+                className="absolute -bottom-3 right-0 sm:-right-6 bg-blue-600 text-white p-3.5 sm:p-5 rounded-2xl shadow-xl z-20 text-left max-w-[140px] sm:max-w-[160px]"
               >
-                <div className="text-2xl sm:text-3xl font-extrabold tracking-tight">1500+</div>
-                <div className="text-xs text-blue-100 font-medium leading-tight mt-1">
+                <div className="text-xl sm:text-3xl font-extrabold tracking-tight">1500+</div>
+                <div className="text-[10px] sm:text-xs text-blue-100 font-medium leading-tight mt-1">
                   free Lessons for Student
                 </div>
               </motion.div>

@@ -68,12 +68,12 @@ export const Hero_Dreamflux = () => {
   return (
     <div className="relative w-full rounded-3xl overflow-hidden bg-white text-slate-900 border border-slate-200/80 shadow-2xl font-syne">
       {/* Top Header */}
-      <header className="px-6 sm:px-12 py-5 flex items-center justify-between border-b border-slate-100">
+      <header className="px-4 sm:px-12 py-4 sm:py-5 flex items-center justify-between border-b border-slate-100">
         <div className="flex items-center gap-2.5 cursor-pointer">
           <div className="w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center text-white font-black text-sm">
             ⚡
           </div>
-          <span className="text-xl font-bold tracking-tight text-slate-900 font-syne">
+          <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-950 font-syne">
             Dreamflux<span className="text-slate-400">.ai</span>
           </span>
         </div>
@@ -86,21 +86,21 @@ export const Hero_Dreamflux = () => {
           <a href="#community" className="hover:text-slate-950 transition">Community</a>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <button className="border border-slate-200 hover:border-slate-400 text-slate-800 text-xs font-bold px-5 py-2 rounded-full transition font-jakarta cursor-pointer">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button className="border border-slate-200 hover:border-slate-400 text-slate-800 text-xs font-bold px-3.5 sm:px-5 py-2 rounded-full transition font-jakarta cursor-pointer">
             Sign In
           </button>
-          <div className="w-8 h-8 rounded-full bg-slate-950 text-white flex items-center justify-center text-xs font-bold font-mono">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-950 text-white flex items-center justify-center text-xs font-bold font-mono">
             DF
           </div>
         </div>
       </header>
 
       {/* Main Grid Content */}
-      <div className="px-6 sm:px-12 py-10 sm:py-16 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="px-4 sm:px-12 py-8 sm:py-16 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column: Human Editorial Typography */}
         <div className="lg:col-span-6 flex flex-col items-start text-left">
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.08] font-syne">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.1] font-syne">
             Turn Your Ideas <br />
             into Stunning <br />
             Visuals with AI

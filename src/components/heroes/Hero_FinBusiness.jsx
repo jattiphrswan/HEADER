@@ -39,8 +39,8 @@ export const Hero_FinBusiness = () => {
   ];
 
   return (
-    <div className="relative w-full rounded-3xl overflow-hidden bg-white text-slate-900 border border-slate-200/80 shadow-2xl font-jakarta p-6 sm:p-14">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div className="relative w-full rounded-3xl overflow-hidden bg-white text-slate-900 border border-slate-200/80 shadow-2xl font-jakarta p-4 sm:p-14">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column */}
         <div className="lg:col-span-6 flex flex-col items-start text-left">
           {/* Top Pill Tag */}
@@ -52,7 +52,7 @@ export const Hero_FinBusiness = () => {
           </div>
 
           {/* Bold Clean Humanist Headline */}
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.12]">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.12]">
             All in one App finance <br />
             for your business
           </h1>
@@ -175,7 +175,7 @@ export const Hero_FinBusiness = () => {
             {/* Overlapping Interactive Send Card */}
             <motion.div
               whileHover={{ y: -3 }}
-              className="mt-[-40px] sm:mt-[-50px] ml-auto w-full max-w-sm bg-white rounded-2xl p-5 shadow-2xl border border-slate-100 z-20 text-left"
+              className="mt-[-25px] sm:mt-[-50px] mx-auto sm:ml-auto w-full max-w-sm bg-white rounded-2xl p-4 sm:p-5 shadow-2xl border border-slate-100 z-20 text-left"
             >
               <div className="text-xs text-slate-500 font-medium mb-1.5">You send exactly</div>
               <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2 mb-3">
