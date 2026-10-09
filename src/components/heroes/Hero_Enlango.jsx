@@ -8,11 +8,15 @@ import {
   Globe2,
   Users,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Menu,
+  X
 } from 'lucide-react';
+import { useIsMobile } from './useIsMobile';
 
-export const Hero_Enlango = () => {
-  // Interactive skills toggles
+export const Hero_Enlango = ({ isMobile: forcedMobile = false }) => {
+  const isMobile = useIsMobile(forcedMobile);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSkills, setActiveSkills] = useState(['Listening', 'Speaking']);
   const [courseType, setCourseType] = useState('group'); // 'group' | 'one-to-one'
   const [showSignupModal, setShowSignupModal] = useState(false);
@@ -26,7 +30,7 @@ export const Hero_Enlango = () => {
   return (
     <div className="relative w-full rounded-3xl overflow-hidden bg-white text-slate-900 border border-slate-200/80 shadow-2xl font-jakarta">
       {/* Top Navigation Bar */}
-      <header className="px-6 sm:px-12 py-5 flex items-center justify-between border-b border-slate-100">
+      <header className="relative z-30 px-5 sm:px-12 py-4 sm:py-5 flex items-center justify-between border-b border-slate-100">
         {/* Brand Logo */}
         <div className="flex items-center gap-2.5 cursor-pointer group">
           <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white">
@@ -42,38 +46,90 @@ export const Hero_Enlango = () => {
           </span>
         </div>
 
-        {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-2 text-sm font-medium text-slate-600">
-          <a href="#courses" className="hover:text-slate-900 px-3 py-1 transition">Courses</a>
-          <span className="text-slate-300">•</span>
-          <a href="#about" className="hover:text-slate-900 px-3 py-1 transition">About</a>
-          <span className="text-slate-300">•</span>
-          <a href="#pricing" className="hover:text-slate-900 px-3 py-1 transition">Pricing</a>
-          <span className="text-slate-300">•</span>
-          <a href="#contact" className="hover:text-slate-900 px-3 py-1 transition">Contact</a>
-        </nav>
+        {/* Desktop Nav Links */}
+        {!isMobile && (
+          <nav className="hidden md:flex items-center gap-2 text-sm font-medium text-slate-600">
+            <a href="#courses" className="hover:text-slate-900 px-3 py-1 transition">Courses</a>
+            <span className="text-slate-300">•</span>
+            <a href="#about" className="hover:text-slate-900 px-3 py-1 transition">About</a>
+            <span className="text-slate-300">•</span>
+            <a href="#pricing" className="hover:text-slate-900 px-3 py-1 transition">Pricing</a>
+            <span className="text-slate-300">•</span>
+            <a href="#contact" className="hover:text-slate-900 px-3 py-1 transition">Contact</a>
+          </nav>
+        )}
 
-        {/* Right CTA */}
-        <div className="flex items-center gap-4">
-          <button className="text-sm font-semibold text-slate-700 hover:text-slate-900 transition cursor-pointer">
-            Login
-          </button>
-          <button
-            onClick={() => setShowSignupModal(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-6 py-2.5 rounded-full transition shadow-md shadow-blue-500/20 active:scale-95 cursor-pointer"
-          >
-            Get Started
-          </button>
+        {/* Right CTA / Mobile Toggle */}
+        <div className="flex items-center gap-3">
+          {!isMobile && (
+            <>
+              <button className="text-sm font-semibold text-slate-700 hover:text-slate-900 transition cursor-pointer">
+                Login
+              </button>
+              <button
+                onClick={() => setShowSignupModal(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-6 py-2.5 rounded-full transition shadow-md shadow-blue-500/20 active:scale-95 cursor-pointer"
+              >
+                Get Started
+              </button>
+            </>
+          )}
+
+          {isMobile && (
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 transition active:scale-95 cursor-pointer flex items-center justify-center"
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          )}
         </div>
+
+        {/* Mobile Dropdown Drawer */}
+        <AnimatePresence>
+          {isMobile && mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 z-40 bg-white/95 backdrop-blur-2xl border-b border-slate-200 px-6 py-5 flex flex-col gap-3 shadow-2xl text-left"
+            >
+              <a href="#courses" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-slate-700 hover:text-blue-600 py-1">Courses</a>
+              <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-slate-700 hover:text-blue-600 py-1">About</a>
+              <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-slate-700 hover:text-blue-600 py-1">Pricing</a>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-slate-700 hover:text-blue-600 py-1">Contact</a>
+
+              <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setShowSignupModal(true);
+                  }}
+                  className="w-full py-2.5 rounded-full bg-blue-600 text-white font-bold text-xs shadow-md transition cursor-pointer"
+                >
+                  Get Started Free
+                </button>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-2 rounded-full border border-slate-200 text-slate-700 font-semibold text-xs transition cursor-pointer"
+                >
+                  Login to Account
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Main Hero Container */}
-      <div className="px-6 sm:px-12 pt-8 sm:pt-14 pb-14 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      <div className="px-5 sm:px-12 pt-6 sm:pt-14 pb-10 sm:pb-14 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left Column: Human Typography & Authentic Editorial Feel */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             {/* TrustPilot Badge */}
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-xs font-semibold text-slate-700 shadow-xs mb-6">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-slate-200 bg-white text-[11px] sm:text-xs font-semibold text-slate-700 shadow-xs mb-4 sm:mb-6">
               <div className="w-4 h-4 rounded bg-emerald-500 text-white flex items-center justify-center text-[10px]">
                 ★
               </div>
@@ -81,157 +137,115 @@ export const Hero_Enlango = () => {
             </div>
 
             {/* Headline with Inline Avatar Pill and Italic Serif Accent Word */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.12]">
+            <h1 className={`${isMobile ? 'text-2xl sm:text-3xl leading-tight' : 'text-3xl sm:text-5xl lg:text-6xl leading-[1.12]'} font-extrabold tracking-tight text-slate-950`}>
               Connect with <br />
               the{' '}
               {/* Inline Avatar Pill matching screenshot */}
-              <span className="inline-flex items-center align-middle bg-slate-100 rounded-full px-1.5 py-1 -mt-1 mx-1 border border-slate-200">
+              <span className="inline-flex items-center align-middle bg-slate-100 rounded-full px-1.5 py-0.5 sm:py-1 -mt-1 mx-1 border border-slate-200">
                 <span className="flex -space-x-1.5 sm:-space-x-2">
                   <img
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
                     alt="Student"
-                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
+                    className="w-5 h-5 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
                   />
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces"
                     alt="Student"
-                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
+                    className="w-5 h-5 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
                   />
                   <img
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces"
                     alt="Student"
-                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
+                    className="w-5 h-5 sm:w-8 sm:h-8 rounded-full border-2 border-white object-cover"
                   />
                 </span>
               </span>{' '}
-              <span className="font-editorial-italic font-normal text-blue-600 text-3xl sm:text-5xl lg:text-6xl underline decoration-blue-200 underline-offset-4">
+              <span className="font-editorial-italic font-normal text-blue-600 underline decoration-blue-200 underline-offset-4">
                 World
               </span> <br />
               Through Words
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-lg leading-relaxed font-normal">
+            <p className="mt-4 sm:mt-6 text-xs sm:text-base text-slate-600 max-w-lg leading-relaxed font-normal">
               Learn to express yourself confidently and open doors to new opportunities everywhere.
             </p>
 
             {/* CTA Button */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => setShowSignupModal(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-base px-8 py-4 rounded-full transition shadow-lg shadow-blue-500/25 active:scale-95 cursor-pointer"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded-full transition shadow-lg shadow-blue-500/25 active:scale-95 flex items-center gap-2 cursor-pointer"
               >
-                Get Started - For Free!
+                <span>Get Started</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Bottom 3 Authentic Metrics */}
-            <div className="mt-14 pt-8 border-t border-slate-100 grid grid-cols-3 gap-6 w-full max-w-md">
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">100%</div>
-                <div className="text-xs text-slate-500 mt-1 font-medium">Satisfaction Rate</div>
+            {/* Interactive Skills Toggles matching screenshot */}
+            <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-slate-100 w-full">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold text-slate-800">
+                  Select Focus Skills (Interactive):
+                </span>
+                <span className="text-[11px] text-blue-600 font-semibold">
+                  {activeSkills.length} selected
+                </span>
               </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">12+</div>
-                <div className="text-xs text-slate-500 mt-1 font-medium">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">100K+</div>
-                <div className="text-xs text-slate-500 mt-1 font-medium">Active Students</div>
+              <div className="flex flex-wrap gap-2">
+                {['Listening', 'Reading', 'Speaking', 'Grammar', 'Vocabulary'].map((skill) => {
+                  const isSelected = activeSkills.includes(skill);
+                  return (
+                    <button
+                      key={skill}
+                      onClick={() => toggleSkill(skill)}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isSelected
+                          ? 'bg-blue-600 text-white shadow-xs'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {isSelected ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+                      <span>{skill}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Warm Human Photography with Layered Interactive Badges */}
-          <div className="lg:col-span-6 relative flex items-center justify-center">
-            <div className="relative w-full max-w-md sm:max-w-lg">
-              {/* Main Student Portrait Image */}
-              <div className="relative rounded-[36px] overflow-hidden shadow-2xl border-4 border-white bg-slate-100 aspect-[3/4]">
-                <img
-                  src="/assets/enlango-student.jpg"
-                  alt="Student smiling with laptop"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
+          {/* Right Column: Hero Visual with Real Human Student Photo */}
+          <div className="lg:col-span-6 relative flex justify-center">
+            {/* Background Blob */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/80 via-indigo-50 to-amber-50 rounded-3xl -rotate-1 transform scale-95" />
 
-              {/* Floating Badge 1 (Top Right): Group Courses / One-to-One Session */}
-              <div className="absolute top-8 -right-2 sm:-right-4 flex flex-col gap-2 z-20">
-                <button
-                  onClick={() => setCourseType('group')}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-md transition-all cursor-pointer ${
-                    courseType === 'group'
-                      ? 'bg-white text-slate-900 border border-blue-500/30 ring-2 ring-blue-500/20'
-                      : 'bg-white/90 text-slate-600 hover:bg-white'
-                  }`}
-                >
-                  <span className="w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">
-                    <Check className="w-2.5 h-2.5 stroke-[3]" />
-                  </span>
-                  <span>Group Courses</span>
-                </button>
+            {/* Main Visual Card */}
+            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-white max-w-md w-full">
+              <img
+                src="/assets/enlango-student.jpg"
+                alt="Student learning language"
+                className="w-full h-auto aspect-4/5 object-cover object-top"
+              />
 
-                <button
-                  onClick={() => setCourseType('one-to-one')}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-md transition-all cursor-pointer ${
-                    courseType === 'one-to-one'
-                      ? 'bg-white text-slate-900 border border-blue-500/30 ring-2 ring-blue-500/20'
-                      : 'bg-white/90 text-slate-600 hover:bg-white'
-                  }`}
-                >
-                  <span className="w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">
-                    <Check className="w-2.5 h-2.5 stroke-[3]" />
-                  </span>
-                  <span>One-to-One Session</span>
-                </button>
-              </div>
-
-              {/* Floating Badge 2 (Center Left): 50+ Global Language Support */}
+              {/* Floating Review Card Overlay */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="absolute top-1/3 left-0 sm:-left-8 bg-blue-600 text-white p-3.5 sm:p-5 rounded-2xl shadow-xl z-20 text-left max-w-[130px] sm:max-w-[150px]"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center justify-between text-left"
               >
-                <div className="text-xl sm:text-3xl font-extrabold tracking-tight">50+</div>
-                <div className="text-[10px] sm:text-xs text-blue-100 font-medium leading-tight mt-1">
-                  Global Language Support
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">
+                    A1
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-900">Elementary to Fluent</div>
+                    <div className="text-[11px] text-slate-500">12-week verified roadmap</div>
+                  </div>
                 </div>
-              </motion.div>
-
-              {/* Floating Badge 3 (Middle Bottom): Add Your Skills with interactive chip toggles */}
-              <div className="absolute bottom-12 left-0 sm:-left-6 bg-white/95 backdrop-blur-md border border-slate-100 p-3 sm:p-4 rounded-2xl shadow-xl z-20 text-left max-w-[280px]">
-                <span className="text-xs font-bold text-slate-900 block mb-1.5">Add your skills</span>
-                <div className="flex flex-wrap gap-1">
-                  {['Listening', 'Reading', 'Speaking'].map((skill) => {
-                    const isSelected = activeSkills.includes(skill);
-                    return (
-                      <button
-                        key={skill}
-                        onClick={() => toggleSkill(skill)}
-                        className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full font-medium transition cursor-pointer flex items-center gap-1 ${
-                          isSelected
-                            ? 'bg-blue-600 text-white shadow-xs'
-                            : 'bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60'
-                        }`}
-                      >
-                        {isSelected ? (
-                          <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                        ) : (
-                          <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-blue-500" />
-                        )}
-                        <span>{skill}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Floating Badge 4 (Bottom Right): 1500+ free Lessons */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="absolute -bottom-3 right-0 sm:-right-6 bg-blue-600 text-white p-3.5 sm:p-5 rounded-2xl shadow-xl z-20 text-left max-w-[140px] sm:max-w-[160px]"
-              >
-                <div className="text-xl sm:text-3xl font-extrabold tracking-tight">1500+</div>
-                <div className="text-[10px] sm:text-xs text-blue-100 font-medium leading-tight mt-1">
-                  free Lessons for Student
+                <div className="text-right">
+                  <div className="text-xs font-bold text-emerald-600">98% Success</div>
+                  <div className="text-[10px] text-slate-400">CEFR Certified</div>
                 </div>
               </motion.div>
             </div>
@@ -253,7 +267,7 @@ export const Hero_Enlango = () => {
                 <h3 className="font-bold text-slate-900 text-lg">Start Free Language Trial</h3>
                 <button
                   onClick={() => setShowSignupModal(false)}
-                  className="w-7 h-7 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center"
+                  className="w-7 h-7 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center cursor-pointer"
                 >
                   ✕
                 </button>
@@ -273,7 +287,7 @@ export const Hero_Enlango = () => {
                   setShowSignupModal(false);
                   alert('Welcome to Enlango! Check your inbox for your trial login.');
                 }}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition shadow-md"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition shadow-md cursor-pointer text-xs"
               >
                 Claim Free Trial
               </button>

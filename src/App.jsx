@@ -693,7 +693,7 @@ export function App() {
               {/* The Hero Preview Container */}
               <div className="w-full flex justify-center">
                 <div className={`transition-all duration-300 w-full ${getContainerWidth()}`}>
-                  <ActiveHeroComponent />
+                  <ActiveHeroComponent isMobile={isForcedMobile} />
                 </div>
               </div>
             </div>
@@ -733,7 +733,7 @@ export function App() {
                     </div>
 
                     <div className={`mx-auto ${getContainerWidth()}`}>
-                      <HeroComp />
+                      <HeroComp isMobile={isForcedMobile} />
                     </div>
                   </div>
                 );

@@ -16,8 +16,11 @@ import {
   ShieldCheck,
   Activity,
   Layers,
-  HardDrive
+  HardDrive,
+  Menu,
+  X
 } from 'lucide-react';
+import { useIsMobile } from './useIsMobile';
 
 const TABS = [
   { id: 'cdn', name: 'Global Edge Network', icon: Globe },
@@ -25,7 +28,9 @@ const TABS = [
   { id: 'db', name: 'Distributed Database', icon: Database }
 ];
 
-export const Hero_SaaSHyperScale = () => {
+export const Hero_SaaSHyperScale = ({ isMobile: forcedMobile = false }) => {
+  const isMobile = useIsMobile(forcedMobile);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('cdn');
   const [copied, setCopied] = useState(false);
   const [reqCounter, setReqCounter] = useState(1842912);
@@ -57,34 +62,36 @@ export const Hero_SaaSHyperScale = () => {
   };
 
   return (
-    <div className="relative w-full rounded-3xl overflow-hidden bg-slate-950 text-white border border-slate-800 shadow-2xl font-sans min-h-[760px] p-6 sm:p-12 flex flex-col justify-between">
+    <div className="relative w-full rounded-3xl overflow-hidden bg-slate-950 text-white border border-slate-800 shadow-2xl font-sans min-h-[640px] p-5 sm:p-12 flex flex-col justify-between">
       {/* Dynamic ambient grid background */}
       <div className="absolute inset-0 bg-[radial-gradient(#38bdf815_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
       <div className="absolute -top-40 right-10 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Top Banner Navigation */}
-      <div className="relative z-20 flex items-center justify-between pb-6 border-b border-slate-800">
+      <div className="relative z-30 flex items-center justify-between pb-4 sm:pb-6 border-b border-slate-800">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-400 to-indigo-600 flex items-center justify-center font-black text-white shadow-lg shadow-sky-500/20">
             ▲
           </div>
-          <span className="font-extrabold text-base tracking-tight text-white">
+          <span className="font-extrabold text-sm sm:text-base tracking-tight text-white">
             HYPERSCALE<span className="text-sky-400">.CLOUD</span>
           </span>
         </div>
 
         {/* Live Req Counter */}
-        <div className="hidden sm:flex items-center gap-2 bg-slate-900/90 border border-slate-800 rounded-full px-3.5 py-1 text-xs font-mono">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-slate-400">EDGE TRAFFIC:</span>
-          <span className="text-sky-300 font-bold">{reqCounter.toLocaleString()} REQ/S</span>
-        </div>
+        {!isMobile && (
+          <div className="hidden sm:flex items-center gap-2 bg-slate-900/90 border border-slate-800 rounded-full px-3.5 py-1 text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="text-slate-400">EDGE TRAFFIC:</span>
+            <span className="text-sky-300 font-bold">{reqCounter.toLocaleString()} REQ/S</span>
+          </div>
+        )}
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={handleTriggerDeploy}
             disabled={deployStep !== 'idle'}
-            className="flex items-center gap-2 bg-sky-500 hover:bg-sky-400 disabled:bg-slate-800 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition cursor-pointer active:scale-95 shadow-[0_0_20px_rgba(56,189,248,0.3)]"
+            className="flex items-center gap-2 bg-sky-500 hover:bg-sky-400 disabled:bg-slate-800 text-slate-950 font-bold px-3.5 sm:px-4 py-2 rounded-xl text-xs transition cursor-pointer active:scale-95 shadow-[0_0_20px_rgba(56,189,248,0.3)]"
           >
             {deployStep === 'idle' && <Zap className="w-3.5 h-3.5 fill-current" />}
             {deployStep === 'building' && <RotateCw className="w-3.5 h-3.5 animate-spin" />}
@@ -92,24 +99,68 @@ export const Hero_SaaSHyperScale = () => {
             {deployStep === 'success' && <Check className="w-3.5 h-3.5 text-emerald-950" />}
             <span>
               {deployStep === 'idle' && 'Deploy Demo'}
-              {deployStep === 'building' && 'Compiling...'}
+              {deployStep === 'building' && 'Building...'}
               {deployStep === 'routing' && 'Propagating...'}
-              {deployStep === 'success' && 'Live in 320 PoPs!'}
+              {deployStep === 'success' && 'Live 320 PoPs!'}
             </span>
           </button>
+
+          {isMobile && (
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-white transition active:scale-95 cursor-pointer flex items-center justify-center"
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          )}
         </div>
+
+        {/* Mobile Dropdown Drawer */}
+        <AnimatePresence>
+          {isMobile && mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-2xl border-b border-slate-800 px-6 py-5 flex flex-col gap-3 shadow-2xl text-left"
+            >
+              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 pb-2 border-b border-slate-800">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <span>TRAFFIC: {reqCounter.toLocaleString()} REQ/S</span>
+              </div>
+              <a href="#cdn" onClick={() => setMobileMenuOpen(false)} className="text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white py-1">Edge CDN</a>
+              <a href="#compute" onClick={() => setMobileMenuOpen(false)} className="text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white py-1">Serverless Compute</a>
+              <a href="#database" onClick={() => setMobileMenuOpen(false)} className="text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white py-1">Global Database</a>
+              <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white py-1">Pricing</a>
+
+              <div className="pt-3 border-t border-slate-800">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    handleTriggerDeploy();
+                  }}
+                  className="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+                >
+                  Deploy Demo Instantly
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center flex-1">
+      <div className="relative z-10 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center flex-1">
         {/* Left Column: Heading and Terminal install */}
-        <div className="lg:col-span-6 flex flex-col gap-5 text-left">
+        <div className="lg:col-span-6 flex flex-col gap-4 sm:gap-5 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950/80 border border-sky-500/30 text-xs font-mono text-sky-300 w-fit">
             <Server className="w-3.5 h-3.5 text-sky-400" />
             <span>GLOBAL ZERO-COLD-START RUNTIME</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.08] text-white">
+          <h1 className={`${isMobile ? 'text-2xl sm:text-3xl leading-tight' : 'text-3xl sm:text-6xl leading-[1.08]'} font-black tracking-tight text-white`}>
             Deploy Instantly to <br />
             <span className="bg-gradient-to-r from-sky-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
               320 Global Edge PoPs.

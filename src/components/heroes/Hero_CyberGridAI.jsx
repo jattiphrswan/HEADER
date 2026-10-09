@@ -16,8 +16,11 @@ import {
   Code2,
   Share2,
   Layers,
-  ArrowRight
+  ArrowRight,
+  Menu,
+  X
 } from 'lucide-react';
+import { useIsMobile } from './useIsMobile';
 
 const PRESET_PROMPTS = [
   {
@@ -37,7 +40,8 @@ const PRESET_PROMPTS = [
   }
 ];
 
-export const Hero_CyberGridAI = () => {
+export const Hero_CyberGridAI = ({ isMobile: forcedMobile = false }) => {
+  const isMobile = useIsMobile(forcedMobile);
   const mountRef = useRef(null);
   const [selectedModel, setSelectedModel] = useState('Gemini 2.5 Ultra');
   const [activePrompt, setActivePrompt] = useState(PRESET_PROMPTS[0].prompt);
@@ -47,6 +51,7 @@ export const Hero_CyberGridAI = () => {
   const [wireframeColor, setWireframeColor] = useState('#06b6d4'); // Cyan, purple, green
   const [tpsCounter, setTpsCounter] = useState(3840);
   const [temperature, setTemperature] = useState(0.4);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Three.js interactive 3D WebGL Neural Mesh
   useEffect(() => {
@@ -181,7 +186,7 @@ export const Hero_CyberGridAI = () => {
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top Banner Navigation */}
-      <div className="relative z-10 px-6 sm:px-10 py-4 flex items-center justify-between border-b border-cyan-500/15 bg-neutral-950/60 backdrop-blur-md">
+      <div className="relative z-20 px-4 sm:px-10 py-4 flex items-center justify-between border-b border-cyan-500/15 bg-neutral-950/80 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
             <Cpu className="w-4 h-4 animate-pulse" />
@@ -196,37 +201,99 @@ export const Hero_CyberGridAI = () => {
           </div>
         </div>
 
-        {/* Live Cluster Metrics */}
-        <div className="hidden md:flex items-center gap-6 text-xs font-mono">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="text-neutral-400">STATUS:</span>
-            <span className="text-emerald-400 font-semibold">99.99% ONLINE</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Activity className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="text-neutral-400">THROUGHPUT:</span>
-            <span className="text-cyan-300 font-semibold">{tpsCounter.toLocaleString()} TOKENS/S</span>
-          </div>
-        </div>
+        {/* Desktop Navigation Links */}
+        {!isMobile && (
+          <nav className="hidden xl:flex items-center gap-6 text-xs font-mono text-neutral-400">
+            <a href="#telemetry" className="hover:text-cyan-400 transition">TELEMETRY</a>
+            <a href="#models" className="hover:text-cyan-400 transition">MODELS</a>
+            <a href="#consensus" className="hover:text-cyan-400 transition">CONSENSUS</a>
+            <a href="#api" className="hover:text-cyan-400 transition">API DOCS</a>
+          </nav>
+        )}
 
-        {/* Theme Accent Picker */}
-        <div className="flex items-center gap-1.5 bg-neutral-900 border border-white/10 rounded-full px-2.5 py-1">
-          {[
-            { id: '#06b6d4', label: 'Cyan' },
-            { id: '#a855f7', label: 'Purple' },
-            { id: '#10b981', label: 'Emerald' }
-          ].map((c) => (
+        {/* Live Cluster Metrics */}
+        {!isMobile && (
+          <div className="hidden md:flex items-center gap-6 text-xs font-mono">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span className="text-neutral-400">STATUS:</span>
+              <span className="text-emerald-400 font-semibold">99.99% ONLINE</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Activity className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="text-neutral-400">THROUGHPUT:</span>
+              <span className="text-cyan-300 font-semibold">{tpsCounter.toLocaleString()} TOKENS/S</span>
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center gap-2">
+          {/* Theme Accent Picker */}
+          <div className="flex items-center gap-1.5 bg-neutral-900 border border-white/10 rounded-full px-2.5 py-1">
+            {[
+              { id: '#06b6d4', label: 'Cyan' },
+              { id: '#a855f7', label: 'Purple' },
+              { id: '#10b981', label: 'Emerald' }
+            ].map((c) => (
+              <button
+                key={c.id}
+                onClick={() => setWireframeColor(c.id)}
+                className="w-3.5 h-3.5 rounded-full transition-transform hover:scale-125 cursor-pointer"
+                style={{ backgroundColor: c.id }}
+                title={c.label}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          {isMobile && (
             <button
-              key={c.id}
-              onClick={() => setWireframeColor(c.id)}
-              className="w-3.5 h-3.5 rounded-full transition-transform hover:scale-125"
-              style={{ backgroundColor: c.id }}
-              title={c.label}
-            />
-          ))}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-1.5 rounded-lg bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 hover:text-white transition active:scale-95 cursor-pointer flex items-center justify-center"
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          )}
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown Drawer */}
+      <AnimatePresence>
+        {isMobile && mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="relative z-20 bg-neutral-950/95 border-b border-cyan-500/25 px-6 py-4 flex flex-col gap-3 font-mono text-left"
+          >
+            <div className="flex items-center justify-between text-[11px] text-neutral-400 pb-2 border-b border-cyan-500/20">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                ONLINE: 99.99%
+              </span>
+              <span className="text-cyan-400">{tpsCounter.toLocaleString()} TPS</span>
+            </div>
+            <a href="#telemetry" onClick={() => setMobileMenuOpen(false)} className="text-xs font-semibold text-neutral-200 hover:text-cyan-400 py-1">TELEMETRY</a>
+            <a href="#models" onClick={() => setMobileMenuOpen(false)} className="text-xs font-semibold text-neutral-200 hover:text-cyan-400 py-1">MODEL CATALOG</a>
+            <a href="#consensus" onClick={() => setMobileMenuOpen(false)} className="text-xs font-semibold text-neutral-200 hover:text-cyan-400 py-1">CONSENSUS NODES</a>
+            <a href="#api" onClick={() => setMobileMenuOpen(false)} className="text-xs font-semibold text-neutral-200 hover:text-cyan-400 py-1">API DOCUMENTATION</a>
+
+            <div className="pt-2 border-t border-cyan-500/20">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleRunInference();
+                }}
+                className="w-full py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-neutral-950 font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+              >
+                RUN LIVE INFERENCE
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main Grid Content */}
       <div className="relative z-10 px-6 sm:px-12 pt-8 pb-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -237,7 +304,7 @@ export const Hero_CyberGridAI = () => {
             <span>DECENTRALIZED HIGH-PERFORMANCE INFERENCE</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-[1.12]">
+          <h2 className={`${isMobile ? 'text-2xl sm:text-3xl leading-tight' : 'text-3xl sm:text-5xl leading-[1.12]'} font-black tracking-tight text-white`}>
             Sub-Millisecond AI. <br />
             <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
               Engineered For Production.

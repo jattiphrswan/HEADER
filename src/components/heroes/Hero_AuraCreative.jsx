@@ -17,8 +17,11 @@ import {
   Send,
   Layers,
   Smile,
-  MousePointer2
+  MousePointer2,
+  Menu,
+  X
 } from 'lucide-react';
+import { useIsMobile } from './useIsMobile';
 
 const PALETTES = [
   {
@@ -47,13 +50,15 @@ const PALETTES = [
   }
 ];
 
-export const Hero_AuraCreative = () => {
+export const Hero_AuraCreative = ({ isMobile: forcedMobile = false }) => {
+  const isMobile = useIsMobile(forcedMobile);
   const [selectedPalette, setSelectedPalette] = useState(PALETTES[0]);
   const [isPlayingSound, setIsPlayingSound] = useState(false);
   const [likesCount, setLikesCount] = useState(2480);
   const [isLiked, setIsLiked] = useState(false);
   const [emailInput, setEmailInput] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const containerRef = useRef(null);
 
   // Trigger confetti burst
@@ -90,56 +95,109 @@ export const Hero_AuraCreative = () => {
   return (
     <div
       ref={containerRef}
-      className={`relative w-full rounded-3xl overflow-hidden text-white shadow-2xl border border-white/10 transition-all duration-700 bg-gradient-to-br ${selectedPalette.bg} font-sans min-h-[750px] flex flex-col justify-between p-6 sm:p-12`}
+      className={`relative w-full rounded-3xl overflow-hidden text-white shadow-2xl border border-white/10 transition-all duration-700 bg-gradient-to-br ${selectedPalette.bg} font-sans min-h-[640px] flex flex-col justify-between p-4 sm:p-12`}
     >
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-rose-500/20 rounded-full blur-[90px] pointer-events-none" />
 
       {/* Top Header Navigation */}
-      <div className="relative z-20 flex items-center justify-between gap-4 pb-6 border-b border-white/15">
+      <div className="relative z-20 flex items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-white/15">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center font-black text-xl shadow-lg">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center font-black text-lg sm:text-xl shadow-lg">
             ✦
           </div>
           <div>
-            <span className="font-extrabold text-lg tracking-tight">AURA STUDIO</span>
-            <span className="block text-[11px] text-white/70">Creative Design Engineering</span>
+            <span className="font-extrabold text-base sm:text-lg tracking-tight">AURA STUDIO</span>
+            <span className="block text-[10px] sm:text-[11px] text-white/70">Creative Design Engineering</span>
           </div>
         </div>
 
-        {/* Dynamic Palette Switcher */}
-        <div className="flex items-center gap-2 bg-black/30 backdrop-blur-md p-1.5 rounded-full border border-white/20">
-          <Palette className="w-3.5 h-3.5 text-white/70 ml-2" />
-          {PALETTES.map((p) => (
+        {/* Desktop Navigation Links */}
+        {!isMobile && (
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-semibold text-white/80">
+            <a href="#work" className="hover:text-white transition">Selected Works</a>
+            <a href="#capabilities" className="hover:text-white transition">Capabilities</a>
+            <a href="#lab" className="hover:text-white transition">Spatial Lab</a>
+            <a href="#pricing" className="hover:text-white transition">Retainers</a>
+          </nav>
+        )}
+
+        <div className="flex items-center gap-2">
+          {/* Dynamic Palette Switcher */}
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-black/30 backdrop-blur-md p-1 sm:p-1.5 rounded-full border border-white/20 overflow-x-auto">
+            <Palette className="w-3.5 h-3.5 text-white/70 ml-1.5 hidden sm:block" />
+            {PALETTES.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => setSelectedPalette(p)}
+                className={`px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+                  selectedPalette.id === p.id
+                    ? 'bg-white text-neutral-900 shadow-md'
+                    : 'text-white/80 hover:text-white'
+                }`}
+              >
+                {p.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Hamburger Toggle Button */}
+          {isMobile && (
             <button
-              key={p.id}
-              onClick={() => setSelectedPalette(p)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition cursor-pointer ${
-                selectedPalette.id === p.id
-                  ? 'bg-white text-neutral-900 shadow-md'
-                  : 'text-white/80 hover:text-white'
-              }`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-white/15 hover:bg-white/25 text-white transition active:scale-95 cursor-pointer flex items-center justify-center border border-white/20"
+              aria-label="Toggle navigation menu"
             >
-              {p.name}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
             </button>
-          ))}
+          )}
         </div>
       </div>
 
+      {/* Mobile Animated Dropdown Drawer */}
+      <AnimatePresence>
+        {isMobile && mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="relative z-30 mb-4 bg-black/85 backdrop-blur-2xl border border-white/20 rounded-2xl p-5 flex flex-col gap-3 shadow-2xl text-left"
+          >
+            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="text-sm font-bold text-white hover:text-amber-300 py-1">Selected Works</a>
+            <a href="#capabilities" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-white/80 hover:text-white py-1">Capabilities</a>
+            <a href="#lab" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-white/80 hover:text-white py-1">Spatial Lab</a>
+            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-white/80 hover:text-white py-1">Retainers</a>
+
+            <div className="pt-3 border-t border-white/15 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  containerRef.current?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full py-2.5 rounded-xl bg-white text-neutral-950 font-bold text-xs uppercase tracking-wider transition cursor-pointer shadow-lg active:scale-95 text-center"
+              >
+                Launch Studio Project
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Center Main Stage */}
-      <div className="relative z-10 py-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-10 py-6 sm:py-10 max-w-4xl mx-auto text-center flex flex-col items-center">
         {/* Animated Badge */}
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs font-semibold mb-6 shadow-md"
+          className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-[11px] sm:text-xs font-semibold mb-4 sm:mb-6 shadow-md"
         >
           <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-spin" />
-          <span>Interactive Spatial Playground • Drag Badges Below</span>
+          <span>Interactive Spatial Playground</span>
         </motion.div>
 
         {/* Dynamic Gradient Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.05] drop-shadow-sm">
+        <h1 className={`${isMobile ? 'text-2xl sm:text-3xl leading-tight' : 'text-3xl sm:text-6xl md:text-7xl leading-[1.05]'} font-black tracking-tight drop-shadow-sm`}>
           Crafting Digital Brands <br />
           <span className={`bg-gradient-to-r ${selectedPalette.textGradient} bg-clip-text text-transparent underline decoration-white/20`}>
             That Defy Expectations.

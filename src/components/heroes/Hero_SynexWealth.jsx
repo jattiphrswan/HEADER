@@ -25,8 +25,11 @@ import {
   Smartphone,
   ExternalLink,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Menu,
+  X
 } from 'lucide-react';
+import { useIsMobile } from './useIsMobile';
 
 // Timeframe sample datasets for the dynamic bar chart
 const TIMEFRAME_DATA = {
@@ -57,7 +60,9 @@ const TIMEFRAME_DATA = {
   }
 };
 
-export const Hero_SynexWealth = () => {
+export const Hero_SynexWealth = ({ isMobile: forcedMobile = false }) => {
+  const isMobile = useIsMobile(forcedMobile);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // Video / Scrubber Player States (as seen in bottom player bar of reference image)
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -160,61 +165,117 @@ export const Hero_SynexWealth = () => {
       </div>
 
       {/* 3. Synex Inner Web Header */}
-      <div className="relative z-20 px-6 sm:px-12 py-5 flex items-center justify-between border-b border-white/5 bg-white/5 backdrop-blur-sm">
+      <div className="relative z-30 px-5 sm:px-12 py-4 sm:py-5 flex items-center justify-between border-b border-white/5 bg-white/5 backdrop-blur-sm">
         {/* Synex Logo */}
         <div className="flex items-center gap-2 cursor-pointer group">
-          <span className="text-2xl font-black tracking-tight text-white font-sans group-hover:text-emerald-400 transition-colors">
+          <span className="text-xl sm:text-2xl font-black tracking-tight text-white font-sans group-hover:text-emerald-400 transition-colors">
             synex
           </span>
         </div>
 
         {/* Central Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-[12px] font-semibold tracking-wider text-neutral-200 uppercase">
-          {['DASHBOARD', 'ASSETS', 'ANALYTICS', 'MARKETS'].map((item) => (
+        {!isMobile && (
+          <nav className="hidden md:flex items-center gap-8 text-[12px] font-semibold tracking-wider text-neutral-200 uppercase">
+            {['DASHBOARD', 'ASSETS', 'ANALYTICS', 'MARKETS'].map((item) => (
+              <button
+                key={item}
+                onClick={() => setActiveNav(item)}
+                className={`hover:text-white transition cursor-pointer relative py-1 ${
+                  activeNav === item ? 'text-white' : 'text-neutral-400'
+                }`}
+              >
+                {item}
+                {activeNav === item && (
+                  <motion.div
+                    layoutId="synex-nav-active"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full shadow-[0_0_8px_white]"
+                  />
+                )}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        {/* Right CTA Area / Mobile Toggle */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {!isMobile && (
+            <>
+              <button className="hidden sm:flex items-center gap-1.5 text-xs text-neutral-300 hover:text-white transition cursor-pointer">
+                <Globe className="w-3.5 h-3.5 text-neutral-400" />
+                <span>English</span>
+              </button>
+
+              <button
+                onClick={() => setShowLaunchModal(true)}
+                className="flex items-center gap-2 bg-white text-neutral-950 hover:bg-neutral-100 font-bold text-xs px-4 py-2 rounded-full transition-transform active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.25)] cursor-pointer"
+              >
+                <div className="w-3 h-3 rounded-full bg-neutral-950 flex items-center justify-center text-white text-[8px]">
+                  ▶
+                </div>
+                <span>Launch app</span>
+              </button>
+            </>
+          )}
+
+          {isMobile && (
             <button
-              key={item}
-              onClick={() => setActiveNav(item)}
-              className={`hover:text-white transition cursor-pointer relative py-1 ${
-                activeNav === item ? 'text-white' : 'text-neutral-400'
-              }`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition active:scale-95 cursor-pointer flex items-center justify-center"
+              aria-label="Toggle mobile menu"
             >
-              {item}
-              {activeNav === item && (
-                <motion.div
-                  layoutId="synex-nav-active"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full shadow-[0_0_8px_white]"
-                />
-              )}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-          ))}
-        </nav>
-
-        {/* Right CTA Area */}
-        <div className="flex items-center gap-4">
-          <button className="hidden sm:flex items-center gap-1.5 text-xs text-neutral-300 hover:text-white transition cursor-pointer">
-            <Globe className="w-3.5 h-3.5 text-neutral-400" />
-            <span>English</span>
-          </button>
-
-          <button
-            onClick={() => setShowLaunchModal(true)}
-            className="flex items-center gap-2 bg-white text-neutral-950 hover:bg-neutral-100 font-bold text-xs px-4 py-2 rounded-full transition-transform active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.25)] cursor-pointer"
-          >
-            <div className="w-3 h-3 rounded-full bg-neutral-950 flex items-center justify-center text-white text-[8px]">
-              ▶
-            </div>
-            <span>Launch app</span>
-          </button>
+          )}
         </div>
+
+        {/* Mobile Dropdown Drawer */}
+        <AnimatePresence>
+          {isMobile && mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 z-40 bg-neutral-950/95 backdrop-blur-2xl border-b border-white/15 px-6 py-5 flex flex-col gap-3 shadow-2xl text-left"
+            >
+              {['DASHBOARD', 'ASSETS', 'ANALYTICS', 'MARKETS'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => {
+                    setActiveNav(item);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`text-xs font-bold tracking-wider uppercase text-left py-1.5 transition ${
+                    activeNav === item ? 'text-emerald-400' : 'text-neutral-300 hover:text-white'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+
+              <div className="pt-3 border-t border-white/10">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setShowLaunchModal(true);
+                  }}
+                  className="w-full py-2.5 rounded-full bg-white text-neutral-950 font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+                >
+                  Launch App ▶
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* 4. Hero Content Header (Typography + Subtitle) */}
-      <div className="relative z-10 pt-10 sm:pt-14 pb-6 px-6 sm:px-12 text-center max-w-4xl mx-auto">
+      <div className="relative z-10 pt-6 sm:pt-14 pb-4 sm:pb-6 px-5 sm:px-12 text-center max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-medium tracking-widest text-neutral-300 uppercase mb-4"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-medium tracking-widest text-neutral-300 uppercase mb-3 sm:mb-4"
         >
           <Sparkles className="w-3 h-3 text-emerald-400" />
           <span>Finance Reimagined</span>
@@ -224,7 +285,7 @@ export const Hero_SynexWealth = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.08]"
+          className={`${isMobile ? 'text-2xl sm:text-3xl leading-tight' : 'text-3xl sm:text-6xl md:text-7xl leading-[1.08]'} font-extrabold tracking-tight text-white`}
         >
           <span className="text-neutral-400/90 font-light">A New Standard</span>
           <br />
